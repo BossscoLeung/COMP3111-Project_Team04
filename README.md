@@ -1,4 +1,4 @@
-#COMP3111 Project Team T-04
+# COMP3111 Project Team T-04
 
 > <https://github.com/BossscoLeung/COMP3111_Project_Team04>
 
@@ -7,7 +7,7 @@
 
 > githubID: BossscoLeung	
 
-> dev branch: Bosco_A
+> dev branch: [Bosco_A]<https://github.com/BossscoLeung/COMP3111_Project_Team04/tree/Bosco_A>
 
 > Task A1 & A2
 
@@ -16,7 +16,7 @@
 
 > githubID: 	
 
-> dev branch: 
+> dev branch: []<>
 
 > Task 
 	
@@ -26,7 +26,7 @@
 
 > githubID: 	
 
-> dev branch: 
+> dev branch: []<>
 
 > Task 
 	
