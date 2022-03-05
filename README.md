@@ -1,8 +1,9 @@
 #COMP3111 Project Team T-04
-<https://github.com/BossscoLeung/COMP3111_Project_Team04>
+
+> <https://github.com/BossscoLeung/COMP3111_Project_Team04>
 
 ### 1. Leung Ka Wa
-> email: kwleungau@connect.ust.hk/boscokawa@gmail.com
+> email: kwleungau@connect.ust.hk/ boscokawa@gmail.com
 
 > githubID: BossscoLeung	
 
