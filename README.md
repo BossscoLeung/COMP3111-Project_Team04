@@ -12,11 +12,11 @@
 > Task A1 & A2
 
 ### 2. Ho Ka Shuen
-> email: 
+> email: kshoah@connect.ust.hk
 
-> githubID: 	
+> githubID: rrreb	
 
-> dev branch: []()
+> dev branch: [Rebecca_B](https://github.com/BossscoLeung/COMP3111_Project_Team04/tree/Rebecca_B)
 
 > Task B1 & B2
 	
