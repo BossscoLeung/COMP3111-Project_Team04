@@ -152,10 +152,8 @@ public class Controller implements Initializable{
     	String oReport = DataAnalysis.getRateOfVaccination(iDataset, iISO);
     	textAreaConsole.setText(oReport);
     }  
-    /**
-     * initialize button
-     * 
-     */
+    
+    //initialize button
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     	// Task A
@@ -210,6 +208,7 @@ public class Controller implements Initializable{
 	    		oReport += String.format("%s\n", obj);
 	    	}
 	    	PreviewSelectedCountriesBoxA1.setText(oReport);
+	    	
 	    }
 	    
 	    @FXML
@@ -231,7 +230,6 @@ public class Controller implements Initializable{
 			
 			ObservableList<CountryA1> tableList = FXCollections.observableArrayList();
 			for (String obj: list) {
-	    		oReport += String.format("%s\n", obj);
 	    		tableList.add(new CountryA1(dataset, obj, FormattedDate));
 	    	}
 
@@ -287,6 +285,7 @@ public class Controller implements Initializable{
 	    	LocalDate EndingDate = EndDatePickerA2.getValue();
 	    	String StartFormattedDate = StartingDate.format(DateTimeFormatter.ofPattern("M/d/yyyy"));
 	    	String EndFormattedDate = EndingDate.format(DateTimeFormatter.ofPattern("M/d/yyyy"));
+	    	String dataset = textfieldDataset.getText();
 	    	
 	    	// not selected any country
 	    	if (list.isEmpty()) {
@@ -296,6 +295,23 @@ public class Controller implements Initializable{
 	    		    	
 	    	String oReport = TaskA.generateChartA2(textfieldDataset.getText(), list, StartFormattedDate, EndFormattedDate);
 	    	textAreaConsole.setText(oReport);
+	    	
+	    	ObservableList<CountryA2> ChartList = FXCollections.observableArrayList();
+			for (String obj: list) {
+				ChartList.add(new CountryA2(dataset, obj, StartFormattedDate, EndFormattedDate));
+	    	}
+
+			try {		
+			ChartA2Controller chartA2Controller = new ChartA2Controller(ChartList);
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/ChartA2.fxml"));
+			Stage stage = new Stage();
+			stage.setTitle("Chart A2");
+			loader.setController(chartA2Controller);
+			stage.setScene(new Scene((VBox) loader.load()));
+			stage.show();
+			} catch(Exception e) {
+				return;
+			}
 	    }
 }
 

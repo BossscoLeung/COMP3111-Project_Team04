@@ -2,8 +2,8 @@ package comp3111.covid;
 
 import org.apache.commons.csv.*;
 import edu.duke.*;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
 
 /**
  * 
@@ -25,10 +25,10 @@ public class TaskA{
 		oReport += String.format("=========Dateset used=========\n%s\n", dataset);
 		oReport += String.format("========Date of interest========\n%s\n", date);
 		oReport += String.format("=======Countries of interest======\n");
-		ObservableList<CountryA1> tableList = FXCollections.observableArrayList();
-    	for (String obj: countrtList) {
+		
+		for (String obj: countrtList) {
     		oReport += String.format("%s\n", obj);
-    		tableList.add(new CountryA1(dataset, obj, date));
+    		
     	}
     	
 		return oReport;
@@ -36,8 +36,9 @@ public class TaskA{
 	
 	public static String generateChartA2(String dataset, ObservableList<String> countrtList, String startDate, String endDate) {
 		String oReport = "";
-		oReport += String.format("%s\n", startDate);
-		oReport += String.format("%s\n", endDate);
+		oReport += String.format("=========Dateset used=========\n%s\n", dataset);
+		oReport += String.format("========Date of interest========\n%s - %s\n", startDate, endDate);
+		oReport += String.format("=======Countries of interest======\n");
 		
     	for (Object obj: countrtList) {
     		oReport += String.format("%s\n", obj);
