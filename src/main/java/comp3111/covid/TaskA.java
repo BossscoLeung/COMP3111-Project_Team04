@@ -25,10 +25,10 @@ public class TaskA{
 		oReport += String.format("=========Dateset used=========\n%s\n", dataset);
 		oReport += String.format("========Date of interest========\n%s\n", date);
 		oReport += String.format("=======Countries of interest======\n");
-		ObservableList<countryA1> tableList = FXCollections.observableArrayList();
+		ObservableList<CountryA1> tableList = FXCollections.observableArrayList();
     	for (String obj: countrtList) {
     		oReport += String.format("%s\n", obj);
-    		tableList.add(new countryA1(dataset, obj, date));
+    		tableList.add(new CountryA1(dataset, obj, date));
     	}
     	
 		return oReport;
@@ -46,34 +46,3 @@ public class TaskA{
 		return oReport;
 	}
 }
-/*
-class countryA1{
-	String location, date;
-	long noOfTotalCases;
-	double noOfTotalCasesPer1M;
-	
-	countryA1(String dataset, String location, String date){
-		this.location = location;
-		this.date = date;
-		this.noOfTotalCases = -1;
-		this.noOfTotalCasesPer1M = -1;
-		
-		FileResource fr = new FileResource("dataset/" + dataset);
-		for (CSVRecord rec : fr.getCSVParser(true)) {
-			if (rec.get("location").equals(location) && rec.get("date").equals(date)) {
-				
-				String s1 = rec.get("total_cases");
-				String s2 = rec.get("total_cases_per_million");
-				if (!s1.equals("")) {
-					this.noOfTotalCases = Long.parseLong(s1);
-				}
-				if (!s2.equals("")) {
-					this.noOfTotalCasesPer1M = Double.parseDouble(s2);
-				}
-				break;
-			}
-		}
-	}
-	
-	
-}*/
