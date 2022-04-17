@@ -31,6 +31,7 @@ import edu.duke.FileResource;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.time.LocalDate;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
 
 
@@ -286,6 +287,8 @@ public class Controller implements Initializable{
 	    	String StartFormattedDate = StartingDate.format(DateTimeFormatter.ofPattern("M/d/yyyy"));
 	    	String EndFormattedDate = EndingDate.format(DateTimeFormatter.ofPattern("M/d/yyyy"));
 	    	String dataset = textfieldDataset.getText();
+	    	Period period = Period.between(StartingDate, EndingDate);
+	    	int duration = period.getDays() + 1;
 	    	
 	    	// not selected any country
 	    	if (list.isEmpty()) {
@@ -298,11 +301,11 @@ public class Controller implements Initializable{
 	    	
 	    	ObservableList<CountryA2> ChartList = FXCollections.observableArrayList();
 			for (String obj: list) {
-				ChartList.add(new CountryA2(dataset, obj, StartFormattedDate, EndFormattedDate));
+				ChartList.add(new CountryA2(dataset, obj, StartingDate, EndingDate, duration));
 	    	}
 
 			try {		
-			ChartA2Controller chartA2Controller = new ChartA2Controller(ChartList);
+			ChartA2Controller chartA2Controller = new ChartA2Controller(ChartList, duration);
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/ChartA2.fxml"));
 			Stage stage = new Stage();
 			stage.setTitle("Chart A2");
