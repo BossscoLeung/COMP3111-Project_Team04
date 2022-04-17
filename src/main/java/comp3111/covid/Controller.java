@@ -287,8 +287,7 @@ public class Controller implements Initializable{
 	    	String StartFormattedDate = StartingDate.format(DateTimeFormatter.ofPattern("M/d/yyyy"));
 	    	String EndFormattedDate = EndingDate.format(DateTimeFormatter.ofPattern("M/d/yyyy"));
 	    	String dataset = textfieldDataset.getText();
-	    	Period period = Period.between(StartingDate, EndingDate);
-	    	int duration = period.getDays() + 1;
+	    	int duration = (int) (EndingDate.toEpochDay()-StartingDate.toEpochDay()) + 1;
 	    	
 	    	// not selected any country
 	    	if (list.isEmpty()) {
@@ -300,6 +299,7 @@ public class Controller implements Initializable{
 	    	textAreaConsole.setText(oReport);
 	    	
 	    	ObservableList<CountryA2> ChartList = FXCollections.observableArrayList();
+	    	ChartList.add(new CountryA2(dataset, "", StartingDate, StartingDate, 1));
 			for (String obj: list) {
 				ChartList.add(new CountryA2(dataset, obj, StartingDate, EndingDate, duration));
 	    	}

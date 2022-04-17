@@ -18,67 +18,52 @@ public class CountryA2 {
 		this.StartFormattedDate = StartDate.format(DateTimeFormatter.ofPattern("M/d/yyyy"));
 		this.EndFormattedDate = EndDate.format(DateTimeFormatter.ofPattern("M/d/yyyy"));
 		
-		FileResource fr = new FileResource("dataset/" + dataset);
-		LocalDate date = StartDate;
-		
-		for (int i = 0; i < duration; i++) {
-			String formattedDate = date.format(DateTimeFormatter.ofPattern("M/d/yyyy"));
-			for (CSVRecord rec : fr.getCSVParser(true)) {
-				double number = 0;
-				int size = this.data.size();
-				boolean log = false;
-				
-				if (rec.get("location").equals(location) && rec.get("date").equals(formattedDate)) {
-					String s1 = rec.get("total_cases_per_million");
-					if (s1 != "") {
-						if(data.isEmpty()) {
-							number = Double.parseDouble(s1);
-							log = true;
-						}
-						else {
-							double pre = data.get(size-1).getYValue();
-							if(pre<=Double.parseDouble(s1)) {
+		if(location!="") {
+			FileResource fr = new FileResource("dataset/" + dataset);
+			LocalDate date = StartDate;
+			
+			for (int i = 0; i < duration; i++) {
+				String formattedDate = date.format(DateTimeFormatter.ofPattern("M/d/yyyy"));
+				for (CSVRecord rec : fr.getCSVParser(true)) {
+					double number = 0;
+					int size = this.data.size();
+					boolean log = false;
+					
+					if (rec.get("location").equals(location) && rec.get("date").equals(formattedDate)) {
+						String s1 = rec.get("total_cases_per_million");
+						if (s1 != "") {
+							if(data.isEmpty()) {
 								number = Double.parseDouble(s1);
 								log = true;
 							}
+							else {
+								double pre = data.get(size-1).getYValue();
+								if(pre<=Double.parseDouble(s1)) {
+									number = Double.parseDouble(s1);
+									log = true;
+								}
+							}
 						}
 					}
+					
+					if(log) {
+						data.add(new XYChart.Data<String,Double>(date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")), number));
+						break;
+					}
 				}
-				
-				if(log) {
-					data.add(new XYChart.Data<String,Double>(formattedDate, number));
-					break;
-				}
+				date = date.plusDays(1);
 			}
-			date = date.plusDays(1);
-		}
-	}
-}
-/*
-if (rec.get("location").equals(location) && rec.get("date").equals(formattedDate)) {
-	String s1 = rec.get("total_cases_per_million");
-	if (s1 != "") {
-		double pre = data.get(size-1).getYValue();
-		if(Double.parseDouble(s1)>=pre) {
-			number = Double.parseDouble(s1);
+			if(data.isEmpty()) {
+				data.add(new XYChart.Data<String,Double>(StartDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")), 0.0));
+				this.location = this.location+" - No data in this period";
+			}
 		}
 		else {
-			number = data.get(size-1).getYValue();
+			LocalDate date = StartDate;
+			for (int i = 0; i < duration; i++) {
+				data.add(new XYChart.Data<String,Double>(date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")), 0.0));
+				date = date.plusDays(1);
+			}
 		}
 	}
-	else {
-		number = data.get(size-1).getYValue();
-	}
-
 }
-
-else {
-	if(!data.isEmpty()) {
-		number = data.get(size-1).getYValue();
-	}
-}
-
-data.add(new XYChart.Data<String,Double>(formattedDate, number));
-date = date.plusDays(1);
-break;
-*/
