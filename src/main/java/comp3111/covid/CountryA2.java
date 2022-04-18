@@ -21,7 +21,7 @@ public class CountryA2 {
 	
 	/**
 	 * Instantiate a country which record the required information
-	 * @param dataset The filename of dataset we want to use.
+	 * @param dataset The filename of dataset we want to use
 	 * @param location The location of the country
 	 * @param StartDate The starting date of the period
 	 * @param EndDate The ending date of the period

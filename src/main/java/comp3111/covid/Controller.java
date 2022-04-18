@@ -47,6 +47,9 @@ public class Controller implements Initializable{
 	
 	@FXML
     private Button PreviewSelectedCountriesButtonA2;
+	
+    @FXML
+    private Button buttonCommendableFeaturesA;
 
     @FXML
     private DatePicker StartDatePickerA2;
@@ -237,7 +240,7 @@ public class Controller implements Initializable{
     		return;
     	}
 
-    	String oReport = TaskA.generateTableA1(textfieldDataset.getText(), list, intersetedDate);
+    	String oReport = TaskA.generateTableA1(dataset, list, intersetedDate);
 		textAreaConsole.setText(oReport);
 		
 		ObservableList<CountryA1> tableList = FXCollections.observableArrayList();
@@ -246,13 +249,13 @@ public class Controller implements Initializable{
     	}
 
 		try {		
-		TableA1Controller tableA1Controller = new TableA1Controller(intersetedDate, tableList);
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/TableA1.fxml"));
-		Stage stage = new Stage();
-		stage.setTitle("Table A1");
-		loader.setController(tableA1Controller);
-		stage.setScene(new Scene((VBox) loader.load()));
-		stage.show();
+			TableA1Controller tableA1Controller = new TableA1Controller(intersetedDate, tableList);
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/TableA1.fxml"));
+			Stage stage = new Stage();
+			stage.setTitle("Table A1");
+			loader.setController(tableA1Controller);
+			stage.setScene(new Scene((VBox) loader.load()));
+			stage.show();
 		} catch(Exception e) {
 			return;
 		}
@@ -314,7 +317,7 @@ public class Controller implements Initializable{
     		return;
     	}
     		    	
-    	String oReport = TaskA.generateChartA2(textfieldDataset.getText(), list, StartingDate, EndingDate);
+    	String oReport = TaskA.generateChartA2(dataset, list, StartingDate, EndingDate);
     	textAreaConsole.setText(oReport);
     	
     	ObservableList<CountryA2> ChartList = FXCollections.observableArrayList();
@@ -324,13 +327,42 @@ public class Controller implements Initializable{
     	}
 
 		try {		
-		ChartA2Controller chartA2Controller = new ChartA2Controller(ChartList, duration);
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/ChartA2.fxml"));
-		Stage stage = new Stage();
-		stage.setTitle("Chart A2");
-		loader.setController(chartA2Controller);
-		stage.setScene(new Scene((VBox) loader.load()));
-		stage.show();
+			ChartA2Controller chartA2Controller = new ChartA2Controller(ChartList, duration);
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/ChartA2.fxml"));
+			Stage stage = new Stage();
+			stage.setTitle("Chart A2");
+			loader.setController(chartA2Controller);
+			stage.setScene(new Scene((VBox) loader.load()));
+			stage.show();
+		} catch(Exception e) {
+			return;
+		}
+    }
+    
+    /**
+     *  Task A Commendable Features
+     *  To be triggered by the "Relation between test and confirmed percentage" button on the Table A Tab
+     *  
+     */
+    @FXML
+    void doCommendableFeaturesA(ActionEvent event) {
+    	// get input
+    	LocalDate intersetedDate = DatePickerA1.getValue();
+    	String dataset = textfieldDataset.getText();
+    		    	
+    	String oReport = TaskA.generateComFeatureA(dataset, intersetedDate);
+    	textAreaConsole.setText(oReport);
+
+    	ComFeatureA ChartList = new ComFeatureA(dataset, intersetedDate);
+
+		try {		
+			ComFeatureAController Controller = new ComFeatureAController(ChartList, ChartList.data.size());
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/FeatureA.fxml"));
+			Stage stage = new Stage();
+			stage.setTitle("Commendable Feature of Task A");
+			loader.setController(Controller);
+			stage.setScene(new Scene((VBox) loader.load()));
+			stage.show();
 		} catch(Exception e) {
 			return;
 		}

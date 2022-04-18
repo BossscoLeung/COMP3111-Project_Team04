@@ -21,6 +21,7 @@ public class TaskA{
 	 */
 	public static String generateTableA1(String dataset, ObservableList<String> countryList, LocalDate date) {
 		String oReport = "";
+		oReport += String.format("=========Task required=========\nGenerate data tables showing the number of confirmed COVID-19 cases by country\n");
 		oReport += String.format("=========Dateset used=========\n%s\n", dataset);
 		oReport += String.format("========Date of interest========\n%s\n", date.format(DateTimeFormatter.ofPattern("d MMM, yyyy",Locale.US)));
 		oReport += String.format("=======Countries of interest======\n");
@@ -42,6 +43,7 @@ public class TaskA{
 	 */
 	public static String generateChartA2(String dataset, ObservableList<String> countrtList, LocalDate startDate, LocalDate endDate) {
 		String oReport = "";
+		oReport += String.format("=========Task required=========\nGenerate data charts showing the cumulative confirmed COVID-19 cases (per 1M) by country\n");
 		oReport += String.format("=========Dateset used=========\n%s\n", dataset);
 		oReport += String.format("========Date of interest========\n%s - %s\n", startDate.format(DateTimeFormatter.ofPattern("d MMM, yyyy",Locale.US)), endDate.format(DateTimeFormatter.ofPattern("d MMM, yyyy",Locale.US)));
 		oReport += String.format("=======Countries of interest======\n");
@@ -49,6 +51,22 @@ public class TaskA{
     	for (Object obj: countrtList) {
     		oReport += String.format("%s\n", obj);
     	}
+    	
+		return oReport;
+	}
+	
+	/**
+	 * 
+	 * @param dataset The filename of dataset we want to use
+	 * @param intersetedDate The interested date to be analysis
+	 * @return The formatted output string that can show directly
+	 */
+	public static String generateComFeatureA(String dataset, LocalDate intersetedDate) {
+		String oReport = "";
+		oReport += String.format("=========Task required=========\nCommendable Feature of Task A\n");
+		oReport += String.format("This is aim to show whether COVID-19 test will have relation on the confirmed cases.\n");
+		oReport += String.format("=========Dateset used=========\n%s\n", dataset);
+		oReport += String.format("========Date of interest========\n%s\n", intersetedDate.format(DateTimeFormatter.ofPattern("d MMM, yyyy",Locale.US)));
     	
 		return oReport;
 	}
