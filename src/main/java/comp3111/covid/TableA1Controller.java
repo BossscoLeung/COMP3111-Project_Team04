@@ -38,7 +38,7 @@ public class TableA1Controller implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
-		this.titleA1.setText(String.format("Number of Confirmed COVID-19 Cases as of %s (M/D/YYYY)", FormattedDate));
+		this.titleA1.setText(String.format("Number of Confirmed COVID-19 Cases as of %s", FormattedDate));
 		this.colCountry1A.setCellValueFactory(new PropertyValueFactory<CountryA1, String>("location"));
 		this.colTotalCases.setCellValueFactory(new PropertyValueFactory<CountryA1, String>("noOfTotalCasesString"));
 		this.colTotalCases1M.setCellValueFactory(new PropertyValueFactory<CountryA1, String>("noOfTotalCasesPer1MString"));

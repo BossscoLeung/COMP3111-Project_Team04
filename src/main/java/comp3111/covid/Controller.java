@@ -29,6 +29,7 @@ import org.apache.http.impl.entity.LaxContentLengthStrategy;
 import org.controlsfx.control.CheckComboBox;
 import edu.duke.FileResource;
 import java.net.URL;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import java.time.LocalDate;
 import java.time.Period;
@@ -235,7 +236,7 @@ public class Controller implements Initializable{
 	    	}
 
 			try {		
-			TableA1Controller tableA1Controller = new TableA1Controller(FormattedDate, tableList);
+			TableA1Controller tableA1Controller = new TableA1Controller(intersetedDate.format(DateTimeFormatter.ofPattern("d MMM, yyyy",Locale.US)), tableList);
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/TableA1.fxml"));
 			Stage stage = new Stage();
 			stage.setTitle("Table A1");
@@ -299,7 +300,7 @@ public class Controller implements Initializable{
 	    	textAreaConsole.setText(oReport);
 	    	
 	    	ObservableList<CountryA2> ChartList = FXCollections.observableArrayList();
-	    	ChartList.add(new CountryA2(dataset, "", StartingDate, StartingDate, 1));
+	    	ChartList.add(new CountryA2(dataset, "", StartingDate, StartingDate, duration));
 			for (String obj: list) {
 				ChartList.add(new CountryA2(dataset, obj, StartingDate, EndingDate, duration));
 	    	}

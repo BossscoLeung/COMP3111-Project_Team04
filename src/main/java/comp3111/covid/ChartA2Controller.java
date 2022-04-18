@@ -42,17 +42,9 @@ public class ChartA2Controller implements Initializable{
 	    
 		// input the data into the chart
 		double max = 1.0;
-		boolean setted = false;
 		for (CountryA2 country: chartList) {
 			XYChart.Series<String, Double> countryData = new XYChart.Series<>(country.location, country.data);
-			
-			if(!setted && country.data.size() == noOfDate) {
-				ChartA2.getData().set(0, countryData);
-				setted = true;
-			}
-			else {
-				ChartA2.getData().add(countryData);
-			}
+			ChartA2.getData().add(countryData);
 			
 			if(!country.data.isEmpty()) {
 				double a = country.data.get(country.data.size()-1).getYValue();
