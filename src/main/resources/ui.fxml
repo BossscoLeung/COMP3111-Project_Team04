@@ -51,10 +51,11 @@
                               <CheckComboBox fx:id="checkComboBoxA1" layoutX="166.0" layoutY="69.0" prefHeight="23.0" prefWidth="235.0" showCheckedCount="true" title="Select countries of interest" />
                               <TextArea fx:id="PreviewSelectedCountriesBoxA1" editable="false" layoutX="404.0" layoutY="98.0" prefHeight="152.0" prefWidth="254.0" />
                               <Button fx:id="PreviewSelectedCountriesButtonA1" layoutX="404.0" layoutY="69.0" mnemonicParsing="false" onAction="#doPreviewSelectedCountriesA1" text="Preview Selected Countries" />
-                              <Label layoutX="130.0" layoutY="282.0" prefHeight="32.0" prefWidth="203.0" text="**Generate table takes time! Please wait a moment after clicking the button." wrapText="true">
+                              <Label layoutX="129.0" layoutY="282.0" prefHeight="32.0" prefWidth="207.0" text="**Generate table takes time! Please wait a moment after clicking the button." wrapText="true">
                                  <font>
                                     <Font size="9.0" />
                                  </font></Label>
+                              <Button layoutX="368.0" layoutY="259.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="205.0" text="Button" />
                            </children>
                         </AnchorPane>
                     </content>
@@ -94,7 +95,7 @@
                                     <DatePicker fx:id="StartDatePickerA2" editable="false" layoutX="166.0" layoutY="120.0" onAction="#doRestrictDateA2" prefHeight="23.0" prefWidth="236.0" promptText="Select Date of interest" />
                                     <Label layoutX="30.0" layoutY="73.0" text="Countries of interest" />
                                     <Label layoutX="30.0" layoutY="124.0" text="Starting Date" />
-                                    <Button fx:id="buttonConfirmedCaseChart" layoutX="118.0" layoutY="267.0" mnemonicParsing="false" onAction="#doConfirmedCaseChart" text="Generate chart of confirmed cases" />
+                                    <Button fx:id="buttonConfirmedCaseChart" layoutX="65.0" layoutY="267.0" mnemonicParsing="false" onAction="#doConfirmedCaseChart" text="Generate chart of confirmed cases per 1M" />
                                     <Label layoutX="232.0" layoutY="14.0" text="Chart of confirmed cases">
                                        <font>
                                           <Font size="22.0" />
@@ -110,11 +111,12 @@
                                           <Font size="9.0" />
                                        </font>
                                     </Label>
-                                    <Label layoutX="121.0" layoutY="290.0" prefHeight="32.0" prefWidth="203.0" text="**Generate chart takes time! Please wait a moment after clicking the button." wrapText="true">
+                                    <Label layoutX="65.0" layoutY="290.0" prefHeight="32.0" prefWidth="251.0" text="**Generate chart takes time! Please wait a moment after clicking the button." wrapText="true">
                                        <font>
                                           <Font size="9.0" />
                                        </font>
                                     </Label>
+                                    <Button layoutX="344.0" layoutY="267.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="249.0" text="Button" />
                                  </children>
                               </AnchorPane>
                            </children>
@@ -146,7 +148,7 @@
       <Label text="Console" />
       <ScrollPane prefHeight="387.0" prefWidth="719.0">
          <content>
-            <TextArea fx:id="textAreaConsole" prefHeight="300.0" prefWidth="718.0" />
+            <TextArea fx:id="textAreaConsole" editable="false" prefHeight="300.0" prefWidth="718.0" />
          </content>
       </ScrollPane>
       <Label text="Countries of interest" />

@@ -2,19 +2,31 @@ package comp3111.covid;
 
 import org.apache.commons.csv.CSVRecord;
 import java.time.LocalDate;
-import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
-
 import edu.duke.FileResource;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.chart.XYChart;
 
+/**
+ * A program for generating chart A2, each instance records the location, 
+ * the number of total cases per 1M in a period.
+ * @author Bosco Leung
+ *
+ */
 public class CountryA2 {
 	String location, StartFormattedDate, EndFormattedDate;
 	ObservableList<XYChart.Data<String, Double>> data = FXCollections.observableArrayList();
 	
+	/**
+	 * Instantiate a country which record the required information
+	 * @param dataset The filename of dataset we want to use.
+	 * @param location The location of the country
+	 * @param StartDate The starting date of the period
+	 * @param EndDate The ending date of the period
+	 * @param duration The number of date in the period
+	 */
 	CountryA2(String dataset, String location, LocalDate StartDate, LocalDate EndDate, int duration){
 		this.location = location;
 		this.StartFormattedDate = StartDate.format(DateTimeFormatter.ofPattern("M/d/yyyy"));

@@ -23,7 +23,6 @@ import javafx.stage.Stage;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Label;
-
 import org.apache.commons.csv.CSVRecord;
 import org.apache.http.impl.entity.LaxContentLengthStrategy;
 import org.controlsfx.control.CheckComboBox;
@@ -155,7 +154,9 @@ public class Controller implements Initializable{
     	textAreaConsole.setText(oReport);
     }  
     
-    //initialize button
+    /**
+     * Initialize the scene
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     	// Task A
@@ -201,121 +202,139 @@ public class Controller implements Initializable{
     }
     
     
-    // Task A1
-	    @FXML
-	    void doPreviewSelectedCountriesA1(ActionEvent event) {
-	    	ObservableList<String> list = checkComboBoxA1.getCheckModel().getCheckedItems();
-	    	String oReport = "";
-	    	for (Object obj: list) {
-	    		oReport += String.format("%s\n", obj);
-	    	}
-	    	PreviewSelectedCountriesBoxA1.setText(oReport);
-	    	
-	    }
-	    
-	    @FXML
-	    void doConfirmedCaseTable(ActionEvent event) {
-	    	// get input
-	    	ObservableList<String> list = checkComboBoxA1.getCheckModel().getCheckedItems();
-	    	LocalDate intersetedDate = DatePickerA1.getValue();
-	    	String FormattedDate = intersetedDate.format(DateTimeFormatter.ofPattern("M/d/yyyy"));
-	    	String dataset = textfieldDataset.getText();
-
-	    	// not selected any country
-	    	if (list.isEmpty()) {
-	    		textAreaConsole.setText("Please select country of interest!");
-	    		return;
-	    	}
-
-	    	String oReport = TaskA.generateTableA1(textfieldDataset.getText(), list, FormattedDate);
-			textAreaConsole.setText(oReport);
-			
-			ObservableList<CountryA1> tableList = FXCollections.observableArrayList();
-			for (String obj: list) {
-	    		tableList.add(new CountryA1(dataset, obj, FormattedDate));
-	    	}
-
-			try {		
-			TableA1Controller tableA1Controller = new TableA1Controller(intersetedDate.format(DateTimeFormatter.ofPattern("d MMM, yyyy",Locale.US)), tableList);
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/TableA1.fxml"));
-			Stage stage = new Stage();
-			stage.setTitle("Table A1");
-			loader.setController(tableA1Controller);
-			stage.setScene(new Scene((VBox) loader.load()));
-			stage.show();
-			} catch(Exception e) {
-				return;
-			}
-			
-	    }
-	    
-	    
+    /**
+     *  Task A1
+     *  To be triggered by the "Preview Selected Countries" button on the Table A Tab
+     *  
+     */
+    @FXML
+    void doPreviewSelectedCountriesA1(ActionEvent event) {
+    	ObservableList<String> list = checkComboBoxA1.getCheckModel().getCheckedItems();
+    	String oReport = "";
+    	for (Object obj: list) {
+    		oReport += String.format("%s\n", obj);
+    	}
+    	PreviewSelectedCountriesBoxA1.setText(oReport);
+    	
+    }
     
-    // Task A2
-	     
-	    @FXML
-	    void doPreviewSelectedCountriesA2(ActionEvent event) {
-	    	ObservableList<String> list = checkComboBoxA2.getCheckModel().getCheckedItems();
-	    	String oReport = "";
-	    	for (Object obj: list) {
-	    		oReport += String.format("%s\n", obj);
-	    	}
-	    	PreviewSelectedCountriesBoxA2.setText(oReport);
-	    }
-	    
-	    @FXML
-	    void doRestrictDateA2(ActionEvent event) {
-	    	// set the valid date input between Mar 1, 2020 and July 20, 2021
-			LocalDate minDate = StartDatePickerA2.getValue();
-			LocalDate maxDate = LocalDate.of(2021, 7, 20);
-			EndDatePickerA2.setDayCellFactory(d ->
-			           new DateCell() {
-			               @Override public void updateItem(LocalDate item, boolean empty) {
-			                   super.updateItem(item, empty);
-			                   setDisable(item.isAfter(maxDate) || item.isBefore(minDate.plusDays(1)));
-			               }});
-			if(EndDatePickerA2.getValue().isBefore(minDate.plusDays(1))) {
-				EndDatePickerA2.setValue(minDate.plusDays(1));
-			}
-	    }
-	    
-	    @FXML
-	    void doConfirmedCaseChart(ActionEvent event) {
-	    	// get input
-	    	ObservableList<String> list = checkComboBoxA2.getCheckModel().getCheckedItems();
-	    	LocalDate StartingDate = StartDatePickerA2.getValue();
-	    	LocalDate EndingDate = EndDatePickerA2.getValue();
-	    	String StartFormattedDate = StartingDate.format(DateTimeFormatter.ofPattern("M/d/yyyy"));
-	    	String EndFormattedDate = EndingDate.format(DateTimeFormatter.ofPattern("M/d/yyyy"));
-	    	String dataset = textfieldDataset.getText();
-	    	int duration = (int) (EndingDate.toEpochDay()-StartingDate.toEpochDay()) + 1;
-	    	
-	    	// not selected any country
-	    	if (list.isEmpty()) {
-	    		textAreaConsole.setText("Please select country of interest!");
-	    		return;
-	    	}
-	    		    	
-	    	String oReport = TaskA.generateChartA2(textfieldDataset.getText(), list, StartFormattedDate, EndFormattedDate);
-	    	textAreaConsole.setText(oReport);
-	    	
-	    	ObservableList<CountryA2> ChartList = FXCollections.observableArrayList();
-	    	ChartList.add(new CountryA2(dataset, "", StartingDate, StartingDate, duration));
-			for (String obj: list) {
-				ChartList.add(new CountryA2(dataset, obj, StartingDate, EndingDate, duration));
-	    	}
+    /**
+     *  Task A1
+     *  To be triggered by the "Generate table for confirmed cases" button on the Table A Tab
+     *  
+     */
+    @FXML
+    void doConfirmedCaseTable(ActionEvent event) {
+    	// get input
+    	ObservableList<String> list = checkComboBoxA1.getCheckModel().getCheckedItems();
+    	LocalDate intersetedDate = DatePickerA1.getValue();
+    	String FormattedDate = intersetedDate.format(DateTimeFormatter.ofPattern("M/d/yyyy"));
+    	String dataset = textfieldDataset.getText();
 
-			try {		
-			ChartA2Controller chartA2Controller = new ChartA2Controller(ChartList, duration);
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/ChartA2.fxml"));
-			Stage stage = new Stage();
-			stage.setTitle("Chart A2");
-			loader.setController(chartA2Controller);
-			stage.setScene(new Scene((VBox) loader.load()));
-			stage.show();
-			} catch(Exception e) {
-				return;
-			}
-	    }
+    	// not selected any country
+    	if (list.isEmpty()) {
+    		textAreaConsole.setText("Please select country of interest!");
+    		return;
+    	}
+
+    	String oReport = TaskA.generateTableA1(textfieldDataset.getText(), list, intersetedDate);
+		textAreaConsole.setText(oReport);
+		
+		ObservableList<CountryA1> tableList = FXCollections.observableArrayList();
+		for (String obj: list) {
+    		tableList.add(new CountryA1(dataset, obj, FormattedDate));
+    	}
+
+		try {		
+		TableA1Controller tableA1Controller = new TableA1Controller(intersetedDate, tableList);
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/TableA1.fxml"));
+		Stage stage = new Stage();
+		stage.setTitle("Table A1");
+		loader.setController(tableA1Controller);
+		stage.setScene(new Scene((VBox) loader.load()));
+		stage.show();
+		} catch(Exception e) {
+			return;
+		}
+    }
+	    
+    /**
+     *  Task A2
+     *  To be triggered by the "Preview Selected Countries" button on the Chart A Tab
+     *  
+     */
+    @FXML
+    void doPreviewSelectedCountriesA2(ActionEvent event) {
+    	ObservableList<String> list = checkComboBoxA2.getCheckModel().getCheckedItems();
+    	String oReport = "";
+    	for (Object obj: list) {
+    		oReport += String.format("%s\n", obj);
+    	}
+    	PreviewSelectedCountriesBoxA2.setText(oReport);
+    }
+    
+    /**
+     *  Task A2
+     *  To be triggered when selected the starting date on the Chart A Tab
+     *  
+     */
+    @FXML
+    void doRestrictDateA2(ActionEvent event) {
+    	// set the valid date input between Mar 1, 2020 and July 20, 2021
+		LocalDate minDate = StartDatePickerA2.getValue();
+		LocalDate maxDate = LocalDate.of(2021, 7, 20);
+		EndDatePickerA2.setDayCellFactory(d ->
+		           new DateCell() {
+		               @Override public void updateItem(LocalDate item, boolean empty) {
+		                   super.updateItem(item, empty);
+		                   setDisable(item.isAfter(maxDate) || item.isBefore(minDate.plusDays(1)));
+		               }});
+		if(EndDatePickerA2.getValue().isBefore(minDate.plusDays(1))) {
+			EndDatePickerA2.setValue(minDate.plusDays(1));
+		}
+    }
+    
+    /**
+     *  Task A2
+     *  To be triggered by the "Generate chart of confirmed cases per 1M" button on the Chart A Tab
+     *  
+     */
+    @FXML
+    void doConfirmedCaseChart(ActionEvent event) {
+    	// get input
+    	ObservableList<String> list = checkComboBoxA2.getCheckModel().getCheckedItems();
+    	LocalDate StartingDate = StartDatePickerA2.getValue();
+    	LocalDate EndingDate = EndDatePickerA2.getValue();
+    	String dataset = textfieldDataset.getText();
+    	int duration = (int) (EndingDate.toEpochDay()-StartingDate.toEpochDay()) + 1;
+    	
+    	// not selected any country
+    	if (list.isEmpty()) {
+    		textAreaConsole.setText("Please select country of interest!");
+    		return;
+    	}
+    		    	
+    	String oReport = TaskA.generateChartA2(textfieldDataset.getText(), list, StartingDate, EndingDate);
+    	textAreaConsole.setText(oReport);
+    	
+    	ObservableList<CountryA2> ChartList = FXCollections.observableArrayList();
+    	ChartList.add(new CountryA2(dataset, "", StartingDate, StartingDate, duration));
+		for (String obj: list) {
+			ChartList.add(new CountryA2(dataset, obj, StartingDate, EndingDate, duration));
+    	}
+
+		try {		
+		ChartA2Controller chartA2Controller = new ChartA2Controller(ChartList, duration);
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/ChartA2.fxml"));
+		Stage stage = new Stage();
+		stage.setTitle("Chart A2");
+		loader.setController(chartA2Controller);
+		stage.setScene(new Scene((VBox) loader.load()));
+		stage.show();
+		} catch(Exception e) {
+			return;
+		}
+    }
+    
 }
 
