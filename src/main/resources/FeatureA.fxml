@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="694.0" prefWidth="905.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane prefHeight="52.0" prefWidth="637.0">
+         <children>
+            <Label layoutX="140.0" layoutY="3.0" text="Relation between test and confirmed case percentage">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="663.0" prefWidth="905.0">
+         <children>
+            <LineChart fx:id="ComFeatureA" alternativeRowFillVisible="false" animated="false" createSymbols="false" legendSide="BOTTOM" prefHeight="660.0" prefWidth="905.0" verticalGridLinesVisible="false" verticalZeroLineVisible="false">
+              <xAxis>
+                <NumberAxis label="Stringency Index" side="BOTTOM" fx:id="xAxis" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis fx:id="yAxis" animated="false" label="Confirmed Percentage" side="LEFT" />
+              </yAxis>
+            </LineChart>
+         </children></AnchorPane>
+   </children>
+</VBox>
