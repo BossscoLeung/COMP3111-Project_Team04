@@ -22,11 +22,11 @@
 	
 	
 ### 3. Lin Matthew
-> email: 
+> email: mlinap@connect.ust.hk
 
-> githubID: 	
+> githubID: urwlcmt
 
-> dev branch: []()
+> dev branch: [Matthew_C](https://github.com/BossscoLeung/COMP3111_Project_Team04/tree/Matthew_C)
 
 > Task C1 & C2
 	

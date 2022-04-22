@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="694.0" prefWidth="905.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane prefHeight="52.0" prefWidth="637.0">
+         <children>
+            <Label fx:id="titleA1" layoutX="172.0" layoutY="9.0" text="Number of Confirmed COVID-19 Deaths as of [Date of Interest]">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="663.0" prefWidth="905.0">
+         <children>
+            <TableView fx:id="tableA1" prefHeight="653.0" prefWidth="905.0">
+              <columns>
+                <TableColumn fx:id="colCountry1A" editable="false" prefWidth="293.0" text="Country" />
+                <TableColumn fx:id="colTotalCases" editable="false" minWidth="0.0" prefWidth="302.0" text="Total Cases" />
+                  <TableColumn fx:id="colTotalCases1M" editable="false" prefWidth="309.0" text="Total Cases (per 1M)" />
+              </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>
