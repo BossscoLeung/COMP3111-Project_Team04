@@ -31,13 +31,14 @@ public class TableB1Controller{
     private Text TitleB1;
     
     
-    public void showTable(ObservableList<DeathsDataB1> DataList) {
+    public void showTable(ObservableList<DeathsDataB1> DataList, String date) {
     	
     	this.ColumnCountry.setCellValueFactory(new PropertyValueFactory<DeathsDataB1, String>("country"));
     	this.ColumnDeaths.setCellValueFactory(new PropertyValueFactory<DeathsDataB1, String>("totalDeath"));
     	this.ColumnDeaths1M.setCellValueFactory(new PropertyValueFactory<DeathsDataB1, String>("totalDeathPer1M"));
     	
     	TableB1.setItems(DataList);
+    	TitleB1.setText("Number of Confirmed COVID-19 Deaths as of " + date);
     }
 
 }
