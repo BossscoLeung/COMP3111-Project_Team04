@@ -51,4 +51,8 @@ run {
 		}
 }
 
+jacoco {
+	toolVersion = "0.8.7"
+}
+
 mainClassName = 'comp3111.covid.MyApplication'
