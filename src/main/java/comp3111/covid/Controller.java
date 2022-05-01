@@ -163,7 +163,39 @@ public class Controller implements Initializable{
 	    private Button GenerateChartB2;	    
 	
     // Task C controller
+	    @FXML
+	    private DatePicker DatePickerC1;
+	    
+	    @FXML
+	    private DatePicker DatePickerEndC2;
+	    
+	    @FXML
+	    private DatePicker DatePickerStartC2;
+	    
+	    @FXML
+	    private Button GenerateChartC2;
+	    
+	    @FXML
+	    private Button GenerateTableC1;
+	    
+	    @FXML
+	    private ListView<String> ListCountrySelectedC1;
 
+	    @FXML
+	    private ListView<String> ListCountrySelectedC2;
+	    
+	    @FXML
+	    private ComboBox<String> SelectContinentC1;
+
+	    @FXML
+	    private ComboBox<String> SelectContinentC2;
+	    
+	    @FXML
+	    private CheckListView<String> SelectCountryC1;
+
+	    @FXML
+	    private CheckListView<String> SelectCountryC2;
+	    
 	    
 	    
 	
@@ -338,7 +370,89 @@ public class Controller implements Initializable{
 				
 				
 		// Task C init
-		
+				// Initialize DatePicker for Task C1 and C2
+				// Set date range available for selection
+				DatePickerC1.setDayCellFactory(d ->
+					new DateCell() {
+						@Override
+						public void updateItem(LocalDate item, boolean empty) {
+							super.updateItem(item, empty);
+							setDisable(item.isAfter(maxDate) || item.isBefore(minDate));
+						}
+					}
+				);
+				
+				DatePickerStartC2.setDayCellFactory(d ->
+					new DateCell() {
+						@Override
+						public void updateItem(LocalDate item, boolean empty) {
+							super.updateItem(item, empty);
+							setDisable(item.isAfter(maxDate) || item.isBefore(minDate));
+						}
+					}
+				);
+				
+				DatePickerEndC2.setDayCellFactory(d ->
+					new DateCell() {
+						@Override
+						public void updateItem(LocalDate item, boolean empty) {
+							super.updateItem(item, empty);
+							setDisable(item.isAfter(maxDate) || item.isBefore(minDate));
+						}
+					}
+				);
+				
+				// Update available dates such that minDate <= macDate
+				DatePickerStartC2.setOnAction((e)->{
+					DatePickerEndC2.setDayCellFactory(d ->
+			        	new DateCell() {
+			        		@Override public void updateItem(LocalDate item, boolean empty) {
+			        			super.updateItem(item, empty);
+			        			setDisable(item.isAfter(maxDate) || item.isBefore(DatePickerStartC2.getValue()));
+			        		}
+			        	}
+					);
+				});
+				
+				DatePickerEndC2.setOnAction((e)->{
+					DatePickerStartC2.setDayCellFactory(d ->
+			          	new DateCell() {
+			          		@Override public void updateItem(LocalDate item, boolean empty) {
+			          			super.updateItem(item, empty);
+			          			setDisable(item.isAfter(DatePickerEndC2.getValue()) || item.isBefore(minDate));
+			          		}
+			          	}
+					);
+				});
+				
+				// Set Country list
+				SelectCountryC1.getItems().addAll(CountryList);
+				SelectCountryC2.getItems().addAll(CountryList);
+				
+				// Display selected countries
+				SelectCountryC1.getCheckModel().getCheckedItems().addListener(new ListChangeListener<String>() {
+				    @Override
+				    public void onChanged(ListChangeListener.Change<? extends String> c) {
+				        c.next();
+				        if(c.wasAdded()) {
+				        	ListCountrySelectedC1.getItems().add(c.getAddedSubList().get(0));
+				        } else if (c.wasRemoved()) {
+				        	ListCountrySelectedC1.getItems().remove(c.getRemoved().get(0));
+				        }
+				    }				    
+				});
+				
+				SelectCountryC2.getCheckModel().getCheckedItems().addListener(new ListChangeListener<String>() {
+				    @Override
+				    public void onChanged(ListChangeListener.Change<? extends String> c) {
+				        c.next();
+				        if(c.wasAdded()) {
+				        	ListCountrySelectedC2.getItems().add(c.getAddedSubList().get(0));
+				        } else if (c.wasRemoved()) {
+				        	ListCountrySelectedC2.getItems().remove(c.getRemoved().get(0));
+				        }
+				    }
+				});
     }
     
     
@@ -623,6 +737,101 @@ public class Controller implements Initializable{
 	            Stage stage = new Stage();
 	            stage.setScene(new Scene(root));
 	            stage.setTitle("Chart B: Confirmed COVID-19 Deaths (per 1M)");
+	            stage.show(); 
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        } 	
+    	}
+    	
+    }
+    
+    /**
+     * Task C1
+     * 
+     */
+    @FXML
+    void doTableC1(ActionEvent event) {
+    	String iDataset = textfieldDataset.getText();
+    	ObservableList<String> countryList = FXCollections.observableArrayList();
+    	
+    	countryList = SelectCountryC1.getCheckModel().getCheckedItems();
+    	LocalDate date = DatePickerC1.getValue();
+    	
+    	if (date == null || countryList.size() == 0) {
+    		textAreaConsole.setText("Please select a valid date and at least one country.");
+    	}
+    	else {
+    	
+	    	ObservableList<VaccinationRate> DataList = FXCollections.observableArrayList();
+	    	for(String country : countryList) {
+	    		VaccinationRate data = new VaccinationRate();
+	    		data.update(iDataset, country, date);
+	    		DataList.add(data);
+	    	}
+    	
+    	
+	    	try {
+	            FXMLLoader loader = new FXMLLoader(getClass().getResource("/TableC1.fxml"));
+	            Parent root = loader.load();   
+	
+	            TableC1Controller TableC1 = loader.getController();
+	            TableC1.showTable(DataList, date.format(DateTimeFormatter.ofPattern("MMM dd, yyyy")));
+	    
+	            Stage stage = new Stage();
+	            stage.setScene(new Scene(root));
+	            stage.setTitle("Table C: Rate of Vaccination against COVID-19");
+	            stage.show();
+	    
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+    	}    	
+    }
+    
+    /**
+     * Task C2
+     * 
+     */
+    @FXML
+    void doChartC2(ActionEvent event) {
+    	String iDataset = textfieldDataset.getText();
+    	ObservableList<String> countryList = FXCollections.observableArrayList();
+    	
+    	countryList = SelectCountryC2.getCheckModel().getCheckedItems();
+    	LocalDate StartDate = DatePickerStartC2.getValue();
+    	LocalDate EndDate = DatePickerEndC2.getValue();
+    	
+    	if (StartDate == null || EndDate == null || countryList.size() == 0) {
+    		textAreaConsole.setText("Please select a valid period and at least one country.");
+    	}
+    	else {
+    		ObservableList<XYChart.Series<String, Double>> series = FXCollections.observableArrayList();
+    		VaccinationRate data = new VaccinationRate();
+    		
+    		for (String country : countryList) {
+    			XYChart.Series<String, Double> seriesItem = new XYChart.Series<String, Double>();
+    			seriesItem.setName(country);
+    			for (LocalDate date = StartDate; date.compareTo(EndDate) <= 0; date = date.plusDays(1)) {
+    				data.update(iDataset, country, date);
+    				if (data.getFormattedDate() != "" && data.getPeopleVaccinatedPer100() != "N/A")
+    					seriesItem.getData().add(new XYChart.Data<String, Double>(data.getFormattedDate(), Double.parseDouble(data.getPeopleVaccinatedPer100())));
+    				else if (data.getPeopleVaccinatedPer100() != "N/A")
+    					seriesItem.getData().add(new XYChart.Data<String, Double>(date.format(DateTimeFormatter.ofPattern("M/d/yyyy")), Double.parseDouble(data.getPeopleVaccinatedPer100())));
+    				else seriesItem.getData().add(new XYChart.Data<String, Double>(date.format(DateTimeFormatter.ofPattern("M/d/yyyy")), 0.0));
+    			}
+    			series.add(seriesItem);
+    		}
+	    	
+	        try {
+	            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ChartC2.fxml"));
+	            Parent root = loader.load();   
+	
+	            ChartC2Controller ChartC2 = loader.getController();
+	            ChartC2.showChart(series);
+	    
+	            Stage stage = new Stage();
+	            stage.setScene(new Scene(root));
+	            stage.setTitle("Chart C: Cumulative Rate of Vaccination against COVID-19");
 	            stage.show(); 
 	        } catch (IOException e) {
 	            e.printStackTrace();

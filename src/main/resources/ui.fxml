@@ -106,11 +106,10 @@
                                           <Font size="22.0" />
                                        </font>
                                     </Label>
-                                    <DatePicker fx:id="tableCDatePicker" layoutX="20.0" layoutY="79.0" prefWidth="195.0" promptText="Please select a date" />
-                                    <CheckListView fx:id="tableCCountryList" layoutX="230.0" layoutY="115.0" prefHeight="189.0" prefWidth="195.0" />
-                                    <ListView fx:id="tableCCountrySelected" layoutX="473.0" layoutY="87.0" prefHeight="161.0" prefWidth="186.0" />
-                                    <ComboBox fx:id="tableCCountrySelect" layoutX="230.0" layoutY="79.0" prefHeight="26.0" prefWidth="195.0" promptText="Select a continent" />
-                                    <Button fx:id="tableCButtonGenerate" layoutX="472.5" layoutY="278.0" mnemonicParsing="false" onAction="#doTableB1" prefHeight="26.0" prefWidth="140.0" text="Generate" />
+                                    <DatePicker fx:id="DatePickerC1" layoutX="20.0" layoutY="79.0" prefWidth="195.0" promptText="Please select a date" />
+                                    <CheckListView fx:id="SelectCountryC1" layoutX="230.0" layoutY="80.0" prefHeight="224.0" prefWidth="195.0" />
+                                    <ListView fx:id="ListCountrySelectedC1" layoutX="473.0" layoutY="87.0" prefHeight="161.0" prefWidth="186.0" />
+                                    <Button fx:id="GenerateTableC1" layoutX="472.5" layoutY="278.0" mnemonicParsing="false" onAction="#doTableC1" prefHeight="26.0" prefWidth="140.0" text="Generate" />
                                     <Label layoutX="472.5" layoutY="67.0" text="Countries Selected:" />
                                     <Label layoutX="472.5" layoutY="257.0" text="Generate Table:" />
                                  </children>
@@ -195,18 +194,17 @@
                                     <Font size="22.0" />
                                  </font>
                               </Label>
-                              <DatePicker fx:id="chartCDatePickerStart" layoutX="20.0" layoutY="79.0" prefHeight="26.0" prefWidth="195.0" promptText="Please select a date" />
-                              <CheckListView fx:id="chartCCountryList" layoutX="230.0" layoutY="115.0" prefHeight="189.0" prefWidth="195.0">
+                              <DatePicker fx:id="DatePickerStartC2" layoutX="20.0" layoutY="79.0" prefHeight="26.0" prefWidth="195.0" promptText="Please select a date" />
+                              <CheckListView fx:id="SelectCountryC2" layoutX="230.0" layoutY="80.0" prefHeight="224.0" prefWidth="195.0">
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets></CheckListView>
-                              <ListView fx:id="chartCCountrySelected" layoutX="473.0" layoutY="87.0" prefHeight="161.0" prefWidth="195.0" />
-                              <ComboBox fx:id="chartCCountrySelect" layoutX="230.0" layoutY="79.0" prefHeight="26.0" prefWidth="195.0" promptText="Select a continent" />
-                              <Button fx:id="chartCButtonGenerate" layoutX="472.5" layoutY="278.0" mnemonicParsing="false" onAction="#doChartB2" prefHeight="26.0" prefWidth="140.0" text="Generate" />
+                              <ListView fx:id="ListCountrySelectedC2" layoutX="473.0" layoutY="87.0" prefHeight="161.0" prefWidth="195.0" />
+                              <Button fx:id="GenerateChartC2" layoutX="472.5" layoutY="278.0" mnemonicParsing="false" onAction="#doChartC2" prefHeight="26.0" prefWidth="140.0" text="Generate" />
                               <Label layoutX="472.5" layoutY="257.0" text="Generate Chart:" />
                               <Label layoutX="473.0" layoutY="67.0" text="Countries Selected:" />
                               <Label layoutX="20.0" layoutY="126.0" text="Ending Date of Interest" />
-                              <DatePicker fx:id="chartCDatePickerEnd" layoutX="20.0" layoutY="146.0" prefHeight="26.0" prefWidth="195.0" promptText="Please select a date" />
+                              <DatePicker fx:id="DatePickerEndC2" layoutX="20.0" layoutY="146.0" prefHeight="26.0" prefWidth="195.0" promptText="Please select a date" />
                            </children>
                         </AnchorPane>
                     </content>
