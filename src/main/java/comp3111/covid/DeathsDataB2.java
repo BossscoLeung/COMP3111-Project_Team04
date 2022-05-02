@@ -67,7 +67,7 @@ public class DeathsDataB2 {
 	            	//add all data in the period
 	            	while (i < numDays) {
 	            		String date = rec.get("date");
-	            		if ((rec.get("location").equals(country)) & !(rec.get("total_deaths_per_million") == "")) {         			
+	            		if ((rec.get("location").equals(country)) && !(rec.get("total_deaths_per_million") == "")) {         			
 	            			Double value = Double.valueOf(rec.get("total_deaths_per_million"));
 	            			XYChart.Data<String, Double> node = new XYChart.Data<String, Double>(date, value);
 	            			

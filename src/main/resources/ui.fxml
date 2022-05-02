@@ -71,21 +71,32 @@
                            <children>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="319.0" prefWidth="719.0">
                                  <children>
-                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="266.0" layoutX="455.0" layoutY="58.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="10.0" width="235.0" />
-                                    <Label layoutX="230.0" layoutY="58.0" text="Countries of Interest" />
+                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="266.0" layoutX="242.0" layoutY="49.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="10.0" width="223.0" />
+                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="266.0" layoutX="482.0" layoutY="49.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="10.0" width="223.0" />
+                                    <Label layoutX="20.0" layoutY="118.0" text="Countries of Interest" />
                                     <Label layoutX="20.0" layoutY="58.0" text="Dates of Interest" />
-                                    <Label layoutX="140.0" layoutY="14.0" text="Generate Table of Confirmed COVID-19 Deaths">
+                                    <Label layoutX="185.0" layoutY="14.0" text="Generate Table of Confirmed Deaths">
                                        <font>
                                           <Font size="22.0" />
                                        </font>
                                     </Label>
                                     <DatePicker fx:id="DatePickerB1" layoutX="20.0" layoutY="79.0" prefWidth="195.0" promptText="Please select a date" />
-                                    <CheckListView fx:id="SelectCountryB1" layoutX="230.0" layoutY="115.0" prefHeight="189.0" prefWidth="195.0" />
-                                    <ListView fx:id="DisplayCountryB1" layoutX="473.0" layoutY="87.0" prefHeight="161.0" prefWidth="186.0" />
-                                    <ComboBox fx:id="ContinentB1" layoutX="230.0" layoutY="79.0" prefHeight="26.0" prefWidth="195.0" promptText="Select a continent" />
-                                    <Button fx:id="GenerateTableB1" layoutX="472.5" layoutY="278.0" mnemonicParsing="false" onAction="#doTableB1" prefHeight="26.0" prefWidth="140.0" text="Generate" />
-                                    <Label layoutX="472.5" layoutY="67.0" text="Countries Selected:" />
-                                    <Label layoutX="472.5" layoutY="257.0" text="Generate Table:" />
+                                    <CheckListView fx:id="SelectCountryB1" layoutX="20.0" layoutY="175.0" prefHeight="141.0" prefWidth="195.0" />
+                                    <ListView fx:id="DisplayCountryB1" layoutX="260.0" layoutY="78.0" prefHeight="161.0" prefWidth="186.0" />
+                                    <ComboBox fx:id="ContinentB1" layoutX="20.0" layoutY="139.0" prefHeight="26.0" prefWidth="195.0" promptText="Select a continent" />
+                                    <Button fx:id="GenerateTableB1" layoutX="260.0" layoutY="269.0" mnemonicParsing="false" onAction="#doTableB1" prefHeight="26.0" prefWidth="140.0" text="Generate" />
+                                    <Label layoutX="260.0" layoutY="58.0" text="Countries Selected:" />
+                                    <Label layoutX="260.0" layoutY="248.0" text="Generate Table:" />
+                                    <Label layoutX="500.0" layoutY="58.0" text="Explore Data with Other Attributes:" />
+                                    <ComboBox fx:id="AttributeB" layoutX="500.0" layoutY="107.0" prefHeight="26.0" prefWidth="187.0" promptText="Select an attribute" />
+                                    <Button fx:id="GenerateRelationB" layoutX="500.0" layoutY="210.0" mnemonicParsing="false" onAction="#doRelationB" prefHeight="26.0" prefWidth="140.0" text="Generate" />
+                                    <Label layoutX="500.0" layoutY="160.0" text="Generate Relation:" />
+                                    <Label layoutX="500.0" layoutY="178.0" prefHeight="25.0" prefWidth="195.0" text="*Generate a scatter chart to analysis the relation between confirmed deaths and other attributes." wrapText="true">
+                                       <font>
+                                          <Font size="9.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="500.0" layoutY="84.0" text="Attribute of Interest" />
                                  </children>
                               </AnchorPane>
                            </children>
@@ -161,7 +172,7 @@
                               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="266.0" layoutX="455.0" layoutY="58.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="10.0" width="235.0" />
                               <Label layoutX="230.0" layoutY="58.0" text="Countries of Interest" />
                               <Label layoutX="20.0" layoutY="58.0" text=" Starting Date of Interest" />
-                              <Label layoutX="140.0" layoutY="14.0" text="Generate Chart of Confirmed COVID-19 Deaths" textAlignment="CENTER">
+                              <Label layoutX="191.0" layoutY="14.0" text="Generate Chart of Confirmed Deaths" textAlignment="CENTER">
                                  <font>
                                     <Font size="22.0" />
                                  </font>
