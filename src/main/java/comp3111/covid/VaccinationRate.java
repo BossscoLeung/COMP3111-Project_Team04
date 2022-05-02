@@ -2,6 +2,7 @@ package comp3111.covid;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 import edu.duke.FileResource;
@@ -24,13 +25,12 @@ public class VaccinationRate {
         return fr.getCSVParser(true);
     }
     
-    public void update(String dataset, String country, LocalDate date) {
-    	this.country = country;
+    public void update(String dataset, String location, LocalDate date) {
+    	this.country = location;
 		this.formattedDate = date.format(DateTimeFormatter.ofPattern("M/d/yyyy"));
 		
 		for (CSVRecord rec : getFileParser(dataset)) {
-			
-			if (rec.get("location").equals(country) & (rec.get("date").equals(formattedDate))) {
+			if (rec.get("location").equals(location) & (rec.get("date").equals(formattedDate))) {
 				String s = rec.get("people_fully_vaccinated");
 				if (!s.equals("")) {
 					this.peopleVaccinated = s;
@@ -40,7 +40,7 @@ public class VaccinationRate {
 				if (!s.equals("")) {
 					this.peopleVaccinatedPer100 = s;
 				}
-				else this.formattedDate = "";
+				break;
 			}
 		}
     }

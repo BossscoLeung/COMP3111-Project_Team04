@@ -805,22 +805,8 @@ public class Controller implements Initializable{
     		textAreaConsole.setText("Please select a valid period and at least one country.");
     	}
     	else {
-    		ObservableList<XYChart.Series<String, Double>> series = FXCollections.observableArrayList();
-    		VaccinationRate data = new VaccinationRate();
-    		
-    		for (String country : countryList) {
-    			XYChart.Series<String, Double> seriesItem = new XYChart.Series<String, Double>();
-    			seriesItem.setName(country);
-    			for (LocalDate date = StartDate; date.compareTo(EndDate) <= 0; date = date.plusDays(1)) {
-    				data.update(iDataset, country, date);
-    				if (data.getFormattedDate() != "" && data.getPeopleVaccinatedPer100() != "N/A")
-    					seriesItem.getData().add(new XYChart.Data<String, Double>(data.getFormattedDate(), Double.parseDouble(data.getPeopleVaccinatedPer100())));
-    				else if (data.getPeopleVaccinatedPer100() != "N/A")
-    					seriesItem.getData().add(new XYChart.Data<String, Double>(date.format(DateTimeFormatter.ofPattern("M/d/yyyy")), Double.parseDouble(data.getPeopleVaccinatedPer100())));
-    				else seriesItem.getData().add(new XYChart.Data<String, Double>(date.format(DateTimeFormatter.ofPattern("M/d/yyyy")), 0.0));
-    			}
-    			series.add(seriesItem);
-    		}
+    		VaccinationRateSeries data = new VaccinationRateSeries(iDataset, countryList, StartDate, EndDate);
+    		ObservableList<XYChart.Series<String, Double>> series = data.getSeries();
 	    	
 	        try {
 	            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ChartC2.fxml"));
