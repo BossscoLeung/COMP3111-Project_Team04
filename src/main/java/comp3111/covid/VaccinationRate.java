@@ -26,9 +26,7 @@ public class VaccinationRate {
     
     public void update(String dataset, String country, LocalDate date) {
     	this.country = country;
-		
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/d/yyyy");
-		this.formattedDate = formatter.format(date);
+		this.formattedDate = date.format(DateTimeFormatter.ofPattern("M/d/yyyy"));
 		
 		for (CSVRecord rec : getFileParser(dataset)) {
 			
