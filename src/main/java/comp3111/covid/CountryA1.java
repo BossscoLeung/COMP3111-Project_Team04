@@ -13,12 +13,12 @@ public class CountryA1 {
 	String location, date, noOfTotalCasesString, noOfTotalCasesPer1MString;
 	
 	/**
-	 * Instantiate a country which record the required information
+	 * Instantiate a country for Task A1 which record the required information
 	 * @param dataset The filename of dataset we want to use
 	 * @param location The location of the country
 	 * @param date The interested date
 	 */
-	CountryA1(String dataset, String location, String date){
+	public CountryA1(String dataset, String location, String date){
 		this.location = location;
 		this.date = date;
 		long noOfTotalCases = -1;
@@ -65,7 +65,7 @@ public class CountryA1 {
 	
 	/**
 	 * <b>Note:</b> It may not return number in string!
-	 * @return The number of total cases in string
+	 * @return The number of total cases in string. If no data found, it will return "No Data"
 	 */
 	public String getNoOfTotalCasesString() {
 		return noOfTotalCasesString;
