@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.Node;
 import javafx.stage.Stage;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.MoveTo;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.fxml.FXMLLoader;
@@ -90,19 +91,27 @@ public class ControllerTester extends ApplicationTest{
     	clickOn("#tabReport1");
     	sleep(100);
     	TextArea display = (TextArea)s.lookup("#PreviewSelectedCountriesBoxA1");
-
     	CheckComboBox<?> button = (CheckComboBox<?>)s.lookup("#checkComboBoxA1");
+    	
     	clickOn(button);
-    	sleep(500);
+    	sleep(200);
 
-    	clickOn("Africa");
-    	sleep(500);
+    	moveBy(0,25);
+    	sleep(100);
+    	clickOn();
+    	
+    	moveBy(0,25);
+    	sleep(100);
+    	clickOn();
+    	
+    	clickOn(button);
+    	sleep(100);
     	
     	clickOn("#PreviewSelectedCountriesButtonA1");
     	sleep(100);
     	
     	String s1 = display.getText();
-    	String result = "Africa\n";
+    	String result = "Afghanistan\nAfrica\n";
     	
     	assertEquals(result, s1);
     }
@@ -114,17 +123,26 @@ public class ControllerTester extends ApplicationTest{
     	TextArea display = (TextArea)s.lookup("#PreviewSelectedCountriesBoxA2");
 
     	CheckComboBox<?> button = (CheckComboBox<?>)s.lookup("#checkComboBoxA2");
-    	clickOn(button);
-    	sleep(500);
-
-    	clickOn("Africa");
-    	sleep(500);
     	
-    	clickOn("#PreviewSelectedCountriesButtonA2");
+    	clickOn(button);
+    	sleep(200);
+
+    	moveBy(0,25);
+    	sleep(100);
+    	clickOn();
+    	
+    	moveBy(0,25);
+    	sleep(100);
+    	clickOn();
+    	
+    	clickOn(button);
+    	sleep(100);
+    	
+    	clickOn("#PreviewSelectedCountriesButtonA1");
     	sleep(100);
     	
     	String s1 = display.getText();
-    	String result = "Africa\n";
+    	String result = "Afghanistan\nAfrica\n";
     	
     	assertEquals(result, s1);
     }
@@ -149,12 +167,16 @@ public class ControllerTester extends ApplicationTest{
     	
     	CheckComboBox<?> button = (CheckComboBox<?>)s.lookup("#checkComboBoxA1");
     	clickOn(button);
-    	WaitForAsyncUtils.waitForFxEvents();
-    	clickOn("Africa");
-    	WaitForAsyncUtils.waitForFxEvents();
+    	sleep(100);
+    	moveBy(0,25);
+    	sleep(100);
+    	clickOn();
+    	moveBy(0,25);
+    	sleep(100);
+    	clickOn();
+    	sleep(100);
     	clickOn(button);
-    	WaitForAsyncUtils.waitForFxEvents();
-
+    	sleep(100);
     	clickOn("#buttonConfirmedCaseTable");
     	WaitForAsyncUtils.waitForFxEvents();
     	
@@ -165,6 +187,7 @@ public class ControllerTester extends ApplicationTest{
     			+ "========Date of interest========\n"
     			+ "1 Mar, 2020\n"
     			+ "=======Countries of interest======\n"
+    			+ "Afghanistan\n"
     			+ "Africa\n";
     	String s1 = t.getText();
     	
@@ -191,12 +214,17 @@ public class ControllerTester extends ApplicationTest{
     	
     	CheckComboBox<?> button = (CheckComboBox<?>)s.lookup("#checkComboBoxA2");
     	clickOn(button);
-    	WaitForAsyncUtils.waitForFxEvents();
-    	clickOn("Africa");
-    	WaitForAsyncUtils.waitForFxEvents();
+    	
+    	sleep(100);
+    	moveBy(0,25);
+    	sleep(100);
+    	clickOn();
+    	moveBy(0,25);
+    	sleep(100);
+    	clickOn();
+    	sleep(100);
     	clickOn(button);
-    	WaitForAsyncUtils.waitForFxEvents();
-
+    	sleep(100);
     	clickOn("#buttonConfirmedCaseChart");
     	WaitForAsyncUtils.waitForFxEvents();
     	
@@ -207,6 +235,7 @@ public class ControllerTester extends ApplicationTest{
     			+ "========Date of interest========\n"
     			+ "1 Mar, 2020 - 2 Mar, 2020\n"
     			+ "=======Countries of interest======\n"
+    			+ "Afghanistan\n"
     			+ "Africa\n";
     	String s1 = t.getText();
     	
@@ -242,7 +271,9 @@ public class ControllerTester extends ApplicationTest{
     	clickOn(continent);
     	sleep(500);
     	
-    	clickOn("Africa");
+    	//clickOn("Africa");
+    	moveBy(0,50);
+    	clickOn();
     	WaitForAsyncUtils.waitForFxEvents();
     	
     	String s1 = continent.getValue().toString();

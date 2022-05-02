@@ -18,32 +18,32 @@ public class CountryA1Tester {
 	}
 	
 	@Test
-	public void getCountryExist() {
+	public void testGetCountryExist() {
 		String test = data.getLocation();
 		assertEquals(test, "Hong Kong");
 	}
 	
 	@Test
-	public void TotalCasesWithCountryExist() {
+	public void testTotalCasesWithCountryExist() {
 		String total = data.getNoOfTotalCasesString();
 		assertEquals(total, "11755");
 	}
 	
 	@Test
-	public void TotalCasesPer1MWithCountryExist() {
+	public void testTotalCasesPer1MWithCountryExist() {
 		String total = data.getNoOfTotalCasesPer1MString();
 		assertEquals(total, "1567.963");
 	}
 	
 	@Test
-	public void TotalCasesWithCountryNotExist() {
+	public void testTotalCasesWithCountryNotExist() {
 		CountryA1 test = new CountryA1(iDataset, "No such country", date);
 		String total = test.getNoOfTotalCasesString();
 		assertEquals(total, "No Data");
 	}
 	
 	@Test
-	public void TotalCasesWithNoData() {
+	public void testTotalCasesWithNoData() {
 		CountryA1 test = new CountryA1(iDataset, "Aruba", date);
 		String total = test.getNoOfTotalCasesString();
 		assertEquals(total, "No Data");

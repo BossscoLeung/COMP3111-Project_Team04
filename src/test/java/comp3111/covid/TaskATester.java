@@ -28,7 +28,7 @@ public class TaskATester {
 	}
 
 	@Test
-	public void StringOutputOfTableA1(){
+	public void testStringOutputOfTableA1(){
 		String testResult = "";
 		testResult += String.format("=========Task required=========\nGenerate data tables showing the number of confirmed COVID-19 cases by country\n");
 		testResult += String.format("=========Dateset used=========\n%s\n", dataset);
@@ -42,7 +42,7 @@ public class TaskATester {
 	}
 	
 	@Test
-	public void StringOutputOfTableA2(){
+	public void testStringOutputOfTableA2(){
 		String testResult = "";
 		testResult += String.format("=========Task required=========\nGenerate data charts showing the cumulative confirmed COVID-19 cases (per 1M) by country\n");
 		testResult += String.format("=========Dateset used=========\n%s\n", dataset);
@@ -56,7 +56,7 @@ public class TaskATester {
 	}
 	
 	@Test
-	public void StringOutputOfComFeatureA(){
+	public void testStringOutputOfComFeatureA(){
 		String testResult = "";
 		testResult += String.format("=========Task required=========\nCommendable Feature of Task A\n");
 		testResult += String.format("This is aim to show whether COVID-19 test will have relation on the confirmed cases.\n");
