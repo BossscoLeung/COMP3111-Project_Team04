@@ -4,11 +4,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -83,7 +78,6 @@ public class CountryA2Tester {
 		}
 		
 		assertTrue(allSame);
-		//assertEquals(datalist.get(3).getXValue(),formdate[3]);
 	}
 	
 	@Test
