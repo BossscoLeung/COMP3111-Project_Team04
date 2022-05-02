@@ -654,7 +654,8 @@ public class Controller implements Initializable{
     }
     
     /**
-     * Task B1
+     *  Task B1
+     *  To be triggered by the "Generate Table" button on the Table B Tab
      * 
      */
     @FXML
@@ -697,7 +698,8 @@ public class Controller implements Initializable{
     	
     }
     /**
-     * Task B2
+     *  Task B2
+     *  To be triggered by the "Generate Chart" button on the Chart B Tab
      * 
      */
     @FXML
@@ -735,7 +737,9 @@ public class Controller implements Initializable{
     	
     }
     
-    /** Task B Commendable Feature
+    /** 
+     *  Task B Commendable Feature
+     *  To be triggered by the "Generate Relation" button on the Table B Tab
      * 
      */
     @FXML

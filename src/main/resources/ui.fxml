@@ -84,14 +84,14 @@
                                     <CheckListView fx:id="SelectCountryB1" layoutX="20.0" layoutY="175.0" prefHeight="141.0" prefWidth="195.0" />
                                     <ListView fx:id="DisplayCountryB1" layoutX="260.0" layoutY="78.0" prefHeight="161.0" prefWidth="186.0" />
                                     <ComboBox fx:id="ContinentB1" layoutX="20.0" layoutY="139.0" prefHeight="26.0" prefWidth="195.0" promptText="Select a continent" />
-                                    <Button fx:id="GenerateTableB1" layoutX="260.0" layoutY="269.0" mnemonicParsing="false" onAction="#doTableB1" prefHeight="26.0" prefWidth="140.0" text="Generate" />
+                                    <Button fx:id="GenerateTableB1" layoutX="260.0" layoutY="269.0" mnemonicParsing="false" onAction="#doTableB1" prefHeight="26.0" prefWidth="140.0" text="Generate Table" />
                                     <Label layoutX="260.0" layoutY="58.0" text="Countries Selected:" />
                                     <Label layoutX="260.0" layoutY="248.0" text="Generate Table:" />
                                     <Label layoutX="500.0" layoutY="58.0" text="Explore Data with Other Attributes:" />
                                     <ComboBox fx:id="AttributeB" layoutX="500.0" layoutY="107.0" prefHeight="26.0" prefWidth="187.0" promptText="Select an attribute" />
-                                    <Button fx:id="GenerateRelationB" layoutX="500.0" layoutY="210.0" mnemonicParsing="false" onAction="#doRelationB" prefHeight="26.0" prefWidth="140.0" text="Generate" />
+                                    <Button fx:id="GenerateRelationB" layoutX="500.0" layoutY="210.0" mnemonicParsing="false" onAction="#doRelationB" prefHeight="26.0" prefWidth="140.0" text="Generate Relation" />
                                     <Label layoutX="500.0" layoutY="160.0" text="Generate Relation:" />
-                                    <Label layoutX="500.0" layoutY="178.0" prefHeight="25.0" prefWidth="195.0" text="*Generate a scatter chart to analysis the relation between confirmed deaths and other attributes." wrapText="true">
+                                    <Label layoutX="500.0" layoutY="178.0" prefHeight="25.0" prefWidth="195.0" text="*Generate a chart to analysis the relation between confirmed deaths and other attributes." wrapText="true">
                                        <font>
                                           <Font size="9.0" />
                                        </font>
@@ -184,7 +184,7 @@
                                  </opaqueInsets></CheckListView>
                               <ListView fx:id="DisplayCountryB2" layoutX="473.0" layoutY="87.0" prefHeight="161.0" prefWidth="195.0" />
                               <ComboBox fx:id="ContinentB2" layoutX="230.0" layoutY="79.0" prefHeight="26.0" prefWidth="195.0" promptText="Select a continent" />
-                              <Button fx:id="GenerateChartB2" layoutX="472.5" layoutY="278.0" mnemonicParsing="false" onAction="#doChartB2" prefHeight="26.0" prefWidth="140.0" text="Generate" />
+                              <Button fx:id="GenerateChartB2" layoutX="472.5" layoutY="278.0" mnemonicParsing="false" onAction="#doChartB2" prefHeight="26.0" prefWidth="140.0" text="Generate Chart" />
                               <Label layoutX="472.5" layoutY="257.0" text="Generate Chart:" />
                               <Label layoutX="473.0" layoutY="67.0" text="Countries Selected:" />
                               <Label layoutX="20.0" layoutY="126.0" text="Ending Date of Interest" />

@@ -10,9 +10,22 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.chart.XYChart;
 
+/**
+ * 
+ * A program to extract data from the dataset for generating the chart in commendable feature B
+ * @author Ho Ka Shuen
+ * 
+ */
 public class ComFeatureB {	
 	private String oReport = "";
-	
+
+	/**
+	 * Gets the data points corresponding to the interested countries and attribute
+	 * @param iDataset The dataset to use
+	 * @param countryList The list of interested countries
+	 * @param attribute The interested attribute
+	 * @return
+	 */
 	public ObservableList<XYChart.Series<Number, Number>> Data(String iDataset, ObservableList<String> countryList, String attribute){
 		
 		ObservableList<XYChart.Series<Number, Number>> series = FXCollections.observableArrayList();		
@@ -54,8 +67,10 @@ public class ComFeatureB {
 		return series;
 	}
 	
-	
-	
+	/**
+	 * Gets the text to be shown in the Text Area Console
+	 * @return the text message
+	 */
 	public String getText() {
 		return oReport;
 	}
