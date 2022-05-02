@@ -19,11 +19,11 @@ public class ComFeatureA {
 	double maxTestPercentage = 0;
 	
 	/**
-	 * 
+	 * Instantiate for commendable feature which record the required information
 	 * @param dataset The filename of dataset we want to use
 	 * @param intersetedDate The interested date
 	 */
-	ComFeatureA(String dataset, LocalDate intersetedDate){
+	public ComFeatureA(String dataset, LocalDate intersetedDate){
 		String formattedDate = intersetedDate.format(DateTimeFormatter.ofPattern("M/d/yyyy"));
 		FileResource fr = new FileResource("dataset/" + dataset);
 		for (CSVRecord rec : fr.getCSVParser(true)) {
