@@ -14,9 +14,23 @@ import javafx.collections.ObservableList;
 import javafx.scene.chart.XYChart;
 import javafx.scene.text.Text;
 
+/**
+ * 
+ * A program to extract data from the dataset for generating the Chart B2
+ * @author Ho Ka Shuen
+ * 
+ */
 public class DeathsDataB2 {	
 	private String oReport = "";
 	
+	/**
+	 * Gets the data points corresponding to the interested countries and period of time
+	 * @param iDataset The dataset to be used
+	 * @param countryList The list of interested countries
+	 * @param StartDate The starting date of the interested period
+	 * @param EndDate The ending date of the interested period
+	 * @return the series containing the data points to be shown in the Chart
+	 */
 	public ObservableList<XYChart.Series<String, Double>> Data(String iDataset, ObservableList<String> countryList, LocalDate StartDate, LocalDate EndDate){
 
 		ObservableList<XYChart.Series<String, Double>> series = FXCollections.observableArrayList();
@@ -67,7 +81,7 @@ public class DeathsDataB2 {
 	            	//add all data in the period
 	            	while (i < numDays) {
 	            		String date = rec.get("date");
-	            		if ((rec.get("location").equals(country)) & !(rec.get("total_deaths_per_million") == "")) {         			
+	            		if ((rec.get("location").equals(country)) && !(rec.get("total_deaths_per_million") == "")) {         			
 	            			Double value = Double.valueOf(rec.get("total_deaths_per_million"));
 	            			XYChart.Data<String, Double> node = new XYChart.Data<String, Double>(date, value);
 	            			
@@ -95,7 +109,10 @@ public class DeathsDataB2 {
 	}
 	
 	
-	
+	/**
+	 * 
+	 * @return the text message shown in the Text Area Console
+	 */
 	public String getText() {
 		if (oReport == "") return oReport;
 		oReport = "Some data of the following countries is missing from the dataset and marked with \"x\":" + "\n" + oReport;
