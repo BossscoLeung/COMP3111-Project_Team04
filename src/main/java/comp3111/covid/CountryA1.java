@@ -65,7 +65,7 @@ public class CountryA1 {
 	
 	/**
 	 * <b>Note:</b> It may not return number in string!
-	 * @return The number of total cases in string
+	 * @return The number of total cases in string. If no data found, it will return "No Data"
 	 */
 	public String getNoOfTotalCasesString() {
 		return noOfTotalCasesString;

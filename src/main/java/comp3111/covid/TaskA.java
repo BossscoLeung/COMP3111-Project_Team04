@@ -15,7 +15,7 @@ public class TaskA{
 	
 	/**
 	 * @param dataset The filename of dataset we want to use
-	 * @param countrtList The list of interested countries
+	 * @param countryList The list of interested countries
 	 * @param date The interested date
 	 * @return The formatted output string that can show directly
 	 */
@@ -36,19 +36,19 @@ public class TaskA{
 	
 	/**
 	 * @param dataset The filename of dataset we want to use
-	 * @param countrtList The list of interested countries
+	 * @param countryList The list of interested countries
 	 * @param startDate The starting date of the period
 	 * @param endDate The ending date of the period
 	 * @return The formatted output string that can show directly
 	 */
-	public static String generateChartA2(String dataset, ObservableList<String> countrtList, LocalDate startDate, LocalDate endDate) {
+	public static String generateChartA2(String dataset, ObservableList<String> countryList, LocalDate startDate, LocalDate endDate) {
 		String oReport = "";
 		oReport += String.format("=========Task required=========\nGenerate data charts showing the cumulative confirmed COVID-19 cases (per 1M) by country\n");
 		oReport += String.format("=========Dateset used=========\n%s\n", dataset);
 		oReport += String.format("========Date of interest========\n%s - %s\n", startDate.format(DateTimeFormatter.ofPattern("d MMM, yyyy",Locale.US)), endDate.format(DateTimeFormatter.ofPattern("d MMM, yyyy",Locale.US)));
 		oReport += String.format("=======Countries of interest======\n");
 		
-    	for (Object obj: countrtList) {
+    	for (Object obj: countryList) {
     		oReport += String.format("%s\n", obj);
     	}
     	
