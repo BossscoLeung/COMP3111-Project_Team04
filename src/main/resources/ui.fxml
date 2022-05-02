@@ -96,9 +96,22 @@
                     <content>
                         <AnchorPane>
                            <children>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="318.0" prefWidth="719.0">
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="319.0" prefWidth="719.0">
                                  <children>
-                                    <TextArea layoutX="14.0" layoutY="14.0" prefHeight="292.0" prefWidth="694.0" text="Task C1: Generate data tables showing the rate of vaccination against COVID-19 by country&#10;&#10;Input&#10;•&#9;Specify the date of interest&#10;•&#9;Specify the countries of interest&#10;&#10;Output&#10;•&#9;Label the data table with a proper title: &quot;Rate of Vaccination against COVID-19 as of [Date of Interest]&quot;&#10;•&#9;Present data in 3 columns with proper headings of &quot;Country&quot;, &quot;Fully Vaccinated&quot;, and &quot;Rate of Vaccination&quot;&#10;•&#9;Present data for the countries of interest in rows&#10;&#10;&#10;" wrapText="true" />
+                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="266.0" layoutX="455.0" layoutY="58.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="10.0" width="235.0" />
+                                    <Label layoutX="230.0" layoutY="58.0" text="Countries of Interest" />
+                                    <Label layoutX="20.0" layoutY="58.0" text="Dates of Interest" />
+                                    <Label layoutX="185.0" layoutY="14.0" text="Generate Table of Vaccination Rates">
+                                       <font>
+                                          <Font size="22.0" />
+                                       </font>
+                                    </Label>
+                                    <DatePicker fx:id="DatePickerC1" layoutX="20.0" layoutY="79.0" prefWidth="195.0" promptText="Please select a date" />
+                                    <CheckListView fx:id="SelectCountryC1" layoutX="230.0" layoutY="80.0" prefHeight="224.0" prefWidth="195.0" />
+                                    <ListView fx:id="ListCountrySelectedC1" layoutX="473.0" layoutY="87.0" prefHeight="161.0" prefWidth="186.0" />
+                                    <Button fx:id="GenerateTableC1" layoutX="472.5" layoutY="278.0" mnemonicParsing="false" onAction="#doTableC1" prefHeight="26.0" prefWidth="140.0" text="Generate" />
+                                    <Label layoutX="472.5" layoutY="67.0" text="Countries Selected:" />
+                                    <Label layoutX="472.5" layoutY="257.0" text="Generate Table:" />
                                  </children>
                               </AnchorPane>
                            </children>
@@ -171,9 +184,27 @@
                   </Tab>
                   <Tab fx:id="tabApp3" text="Chart C">
                     <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <TextArea layoutX="18.0" layoutY="7.0" prefHeight="298.0" prefWidth="682.0" text="Task C2: Generate data charts showing the cumulative rate of vaccination against COVID-19 by country&#10;&#10;Input&#10;•&#9;Specify the period of interest&#10;•&#9;Specify the countries of interest&#10;&#10;Output&#10;•&#9;Label the data chart with a proper title: &quot;Cumulative Rate of Vaccination against COVID-19 &quot;&#10;•&#9;Label the x-axis and y-axis with proper scales&#10;•&#9;Present data in coloured cumulative curves labelled with corresponding countries&#10;&#10;" wrapText="true" />
+                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="266.0" layoutX="455.0" layoutY="58.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="10.0" width="235.0" />
+                              <Label layoutX="230.0" layoutY="58.0" text="Countries of Interest" />
+                              <Label layoutX="20.0" layoutY="58.0" text=" Starting Date of Interest" />
+                              <Label layoutX="168.0" layoutY="14.0" text="Generate Chart of Vaccination Rate" textAlignment="CENTER">
+                                 <font>
+                                    <Font size="22.0" />
+                                 </font>
+                              </Label>
+                              <DatePicker fx:id="DatePickerStartC2" layoutX="20.0" layoutY="79.0" prefHeight="26.0" prefWidth="195.0" promptText="Please select a date" />
+                              <CheckListView fx:id="SelectCountryC2" layoutX="230.0" layoutY="80.0" prefHeight="224.0" prefWidth="195.0">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets></CheckListView>
+                              <ListView fx:id="ListCountrySelectedC2" layoutX="473.0" layoutY="87.0" prefHeight="161.0" prefWidth="195.0" />
+                              <Button fx:id="GenerateChartC2" layoutX="472.5" layoutY="278.0" mnemonicParsing="false" onAction="#doChartC2" prefHeight="26.0" prefWidth="140.0" text="Generate" />
+                              <Label layoutX="472.5" layoutY="257.0" text="Generate Chart:" />
+                              <Label layoutX="473.0" layoutY="67.0" text="Countries Selected:" />
+                              <Label layoutX="20.0" layoutY="126.0" text="Ending Date of Interest" />
+                              <DatePicker fx:id="DatePickerEndC2" layoutX="20.0" layoutY="146.0" prefHeight="26.0" prefWidth="195.0" promptText="Please select a date" />
                            </children>
                         </AnchorPane>
                     </content>
