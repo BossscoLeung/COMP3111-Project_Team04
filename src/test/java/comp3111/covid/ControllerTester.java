@@ -477,4 +477,161 @@ public class ControllerTester extends ApplicationTest{
     	String s1 = t.getText();
     	assertEquals(result, s1);
     }
+
+	@Test
+	public void testTableVaccinationWithNoInput() {
+		clickOn("#tabReport3");
+		sleep(100);
+
+		clickOn("#GenerateTableC1");
+
+		String result = "Please select a valid date and at least one country.";
+		String s1 = t.getText();
+
+		assertEquals(result, s1);
+	}
+
+	@Test
+	public void testTableVaccinationWithMissingInputCountry() {
+		clickOn("#tabReport3");
+		sleep(100);
+
+		LocalDate date = LocalDate.parse("2021-04-28");
+		DatePicker datePicker = (DatePicker)s.lookup("#DatePickerC1");
+		datePicker.setValue(date);
+
+		clickOn("#GenerateTableC1");
+
+		String result = "Please select a valid date and at least one country.";
+		String s1 = t.getText();
+
+		assertEquals(result, s1);
+	}
+
+	@Test
+	public void testTableVaccinationWithMissingInputDate() {
+		clickOn("#tabReport3");
+		sleep(100);
+
+		Node  node = (Node)s.lookup("#SelectCountryC1");
+		CheckListView<?> selectCountry = (CheckListView<?>) node;
+
+		selectCountry.getCheckModel().check(2);
+		WaitForAsyncUtils.waitForFxEvents();
+
+		clickOn("#GenerateTableC1");
+
+		String result = "Please select a valid date and at least one country.";
+		String s1 = t.getText();
+
+		assertEquals(result, s1);
+	}
+
+	@Test
+	public void testTableVaccinationWithInput() {
+		clickOn("#tabReport3");
+		sleep(100);
+
+		LocalDate date = LocalDate.parse("2021-04-28");
+		DatePicker datePicker = (DatePicker)s.lookup("#DatePickerC1");
+		datePicker.setValue(date);
+
+		Node  node = (Node)s.lookup("#SelectCountryC1");
+		CheckListView<?> selectCountry = (CheckListView<?>) node;
+
+		selectCountry.getCheckModel().check(2);
+		WaitForAsyncUtils.waitForFxEvents();
+
+		clickOn("#GenerateTableC1");
+
+		String result = "";
+		String s1 = t.getText();
+
+		assertEquals(result, s1);
+	}
+
+	@Test
+	public void testChartVaccinationWithNoInput() {
+		clickOn("#tabApp3");
+		WaitForAsyncUtils.waitForFxEvents();
+
+		clickOn("#GenerateChartC2");
+		WaitForAsyncUtils.waitForFxEvents();
+
+		String result = "Please select a valid period and at least one country.";
+		String s1 = t.getText();
+
+		assertEquals(result, s1);
+
+	}
+
+	@Test
+	public void testChartVaccinationWithMissingInputCountry() {
+		clickOn("#tabApp3");
+		WaitForAsyncUtils.waitForFxEvents();
+
+		LocalDate StartDate = LocalDate.parse("2021-04-28");
+		LocalDate EndDate = LocalDate.parse("2021-04-29");
+		DatePicker StartDatePicker = (DatePicker)s.lookup("#DatePickerStartC2");
+		DatePicker EndDatePicker = (DatePicker)s.lookup("#DatePickerEndC2");
+		StartDatePicker.setValue(StartDate);
+		EndDatePicker.setValue(EndDate);
+
+		clickOn("#GenerateChartC2");
+		WaitForAsyncUtils.waitForFxEvents();
+
+
+		String result = "Please select a valid period and at least one country.";
+		String s1 = t.getText();
+
+		assertEquals(result, s1);
+	}
+
+	@Test
+	public void testChartVaccinationWithMissingInputDate() {
+		clickOn("#tabApp3");
+		WaitForAsyncUtils.waitForFxEvents();
+
+		Node  node = (Node)s.lookup("#SelectCountryC2");
+		CheckListView<?> selectCountry = (CheckListView<?>) node;
+
+		selectCountry.getCheckModel().check(2);
+		WaitForAsyncUtils.waitForFxEvents();
+
+		clickOn("#GenerateChartC2");
+		WaitForAsyncUtils.waitForFxEvents();
+
+		String result = "Please select a valid period and at least one country.";
+		String s1 = t.getText();
+
+		assertEquals(result, s1);
+	}
+
+	@Test
+	public void testChartVaccinationWithInput() {
+		clickOn("#tabApp3");
+		WaitForAsyncUtils.waitForFxEvents();
+
+		LocalDate StartDate = LocalDate.parse("2021-04-28");
+		LocalDate EndDate = LocalDate.parse("2021-04-29");
+		DatePicker StartDatePicker = (DatePicker)s.lookup("#DatePickerStartC2");
+		DatePicker EndDatePicker = (DatePicker)s.lookup("#DatePickerEndC2");
+		StartDatePicker.setValue(StartDate);
+		EndDatePicker.setValue(EndDate);
+
+		Node  node = (Node)s.lookup("#SelectCountryC2");
+		CheckListView<?> selectCountry = (CheckListView<?>) node;
+
+		selectCountry.getCheckModel().check(2);
+		WaitForAsyncUtils.waitForFxEvents();
+
+		clickOn("#GenerateChartC2");
+		WaitForAsyncUtils.waitForFxEvents();
+
+
+		String result = "";
+		String s1 = t.getText();
+
+		assertEquals(result, s1);
+	}
 }

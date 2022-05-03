@@ -27,6 +27,8 @@ public class VaccinationRate {
     
     public void update(String dataset, String location, LocalDate date) {
     	this.country = location;
+        this.peopleVaccinated = "N/A";
+        this.peopleVaccinatedPer100 = "N/A";
 		this.formattedDate = date.format(DateTimeFormatter.ofPattern("M/d/yyyy"));
 		
 		for (CSVRecord rec : getFileParser(dataset)) {
@@ -35,11 +37,14 @@ public class VaccinationRate {
 				if (!s.equals("")) {
 					this.peopleVaccinated = s;
 				}
+                else this.peopleVaccinated = "N/A";
 					
 				s = rec.get("people_fully_vaccinated_per_hundred");
 				if (!s.equals("")) {
 					this.peopleVaccinatedPer100 = s;
 				}
+                else this.peopleVaccinatedPer100 = "N/A";
+
 				break;
 			}
 		}
