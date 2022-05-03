@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ComFeatureA.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">deCOVID</a> &gt; <a href="index.source.html" class="el_package">comp3111.covid</a> &gt; <span class="el_source">ComFeatureA.java</span></div><h1>ComFeatureA.java</h1><pre class="source lang-java linenums">package comp3111.covid;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import org.apache.commons.csv.CSVRecord;
+import edu.duke.FileResource;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.chart.XYChart;
+
+/**
+ * A program for generating Commandable feature for task A
+ * @author Bosco Leung
+ *
+ */
+public class ComFeatureA {
+<span class="fc" id="L17">	ObservableList&lt;XYChart.Data&lt;Double, Double&gt;&gt; data = FXCollections.observableArrayList();</span>
+<span class="fc" id="L18">	double maxConfirmedPercentage = 0;</span>
+<span class="fc" id="L19">	double maxTestPercentage = 0;</span>
+	
+	/**
+	 * Instantiate for commendable feature which record the required information
+	 * @param dataset The filename of dataset we want to use
+	 * @param intersetedDate The interested date
+	 */
+<span class="fc" id="L26">	public ComFeatureA(String dataset, LocalDate intersetedDate){</span>
+<span class="fc" id="L27">		String formattedDate = intersetedDate.format(DateTimeFormatter.ofPattern(&quot;M/d/yyyy&quot;));</span>
+<span class="fc" id="L28">		FileResource fr = new FileResource(&quot;dataset/&quot; + dataset);</span>
+<span class="fc bfc" id="L29" title="All 2 branches covered.">		for (CSVRecord rec : fr.getCSVParser(true)) {</span>
+<span class="fc" id="L30">			String s1 = rec.get(&quot;date&quot;);</span>
+<span class="fc" id="L31">			String s2 = rec.get(&quot;total_cases_per_million&quot;);</span>
+<span class="fc" id="L32">			String s3 = rec.get(&quot;total_tests_per_thousand&quot;);</span>
+				
+<span class="fc bfc" id="L34" title="All 6 branches covered.">			if (s1.equals(formattedDate) &amp;&amp; !s2.equals(&quot;&quot;) &amp;&amp; !s3.equals(&quot;&quot;)) {</span>
+<span class="fc" id="L35">				double precentage = Double.parseDouble(s2)/10000;</span>
+<span class="fc" id="L36">				data.add(new XYChart.Data&lt;Double,Double&gt;(Double.parseDouble(s3)/10, precentage));</span>
+<span class="fc bfc" id="L37" title="All 2 branches covered.">				if(precentage &gt; maxConfirmedPercentage){</span>
+<span class="fc" id="L38">					maxConfirmedPercentage = precentage;</span>
+				}
+<span class="fc bfc" id="L40" title="All 2 branches covered.">				if(Double.parseDouble(s3)/10&gt;maxTestPercentage) {</span>
+<span class="fc" id="L41">					maxTestPercentage = Double.parseDouble(s3)/10;</span>
+				}
+			}
+<span class="fc" id="L44">		}</span>
+		
+<span class="fc" id="L46">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

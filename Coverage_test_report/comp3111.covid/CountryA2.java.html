@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CountryA2.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">deCOVID</a> &gt; <a href="index.source.html" class="el_package">comp3111.covid</a> &gt; <span class="el_source">CountryA2.java</span></div><h1>CountryA2.java</h1><pre class="source lang-java linenums">package comp3111.covid;
+
+import org.apache.commons.csv.CSVRecord;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
+import edu.duke.FileResource;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.chart.XYChart;
+
+/**
+ * A program for generating chart A2, each instance records the location, the number of total cases per 1M in a period.
+ * @author Bosco Leung
+ *
+ */
+public class CountryA2 {
+	String location, StartFormattedDate, EndFormattedDate;
+<span class="fc" id="L19">	ObservableList&lt;XYChart.Data&lt;String, Double&gt;&gt; data = FXCollections.observableArrayList();</span>
+
+	/**
+	 * Instantiate a country for Task A2 which record the required information
+	 * @param dataset The filename of dataset we want to use
+	 * @param location The location of the country
+	 * @param StartDate The starting date of the period
+	 * @param EndDate The ending date of the period
+	 * @param duration The number of date in the period
+	 */
+<span class="fc" id="L29">	public CountryA2(String dataset, String location, LocalDate StartDate, LocalDate EndDate, int duration){</span>
+<span class="fc" id="L30">		this.location = location;</span>
+<span class="fc" id="L31">		this.StartFormattedDate = StartDate.format(DateTimeFormatter.ofPattern(&quot;M/d/yyyy&quot;));</span>
+<span class="fc" id="L32">		this.EndFormattedDate = EndDate.format(DateTimeFormatter.ofPattern(&quot;M/d/yyyy&quot;));</span>
+		
+<span class="fc bfc" id="L34" title="All 2 branches covered.">		if(location!=&quot;&quot;) {</span>
+<span class="fc" id="L35">			FileResource fr = new FileResource(&quot;dataset/&quot; + dataset);</span>
+<span class="fc" id="L36">			LocalDate date = StartDate;</span>
+			
+<span class="fc bfc" id="L38" title="All 2 branches covered.">			for (int i = 0; i &lt; duration; i++) {</span>
+<span class="fc" id="L39">				String formattedDate = date.format(DateTimeFormatter.ofPattern(&quot;M/d/yyyy&quot;));</span>
+<span class="fc bfc" id="L40" title="All 2 branches covered.">				for (CSVRecord rec : fr.getCSVParser(true)) {</span>
+<span class="fc" id="L41">					double number = 0;</span>
+<span class="fc" id="L42">					int size = this.data.size();</span>
+<span class="fc" id="L43">					boolean log = false;</span>
+					
+<span class="fc bfc" id="L45" title="All 4 branches covered.">					if (rec.get(&quot;date&quot;).equals(formattedDate) &amp;&amp; rec.get(&quot;location&quot;).equals(location)) {</span>
+<span class="fc" id="L46">						String s1 = rec.get(&quot;total_cases_per_million&quot;);</span>
+<span class="pc bpc" id="L47" title="1 of 2 branches missed.">						if (s1 != &quot;&quot;) {</span>
+<span class="fc bfc" id="L48" title="All 2 branches covered.">							if(data.isEmpty()) {</span>
+<span class="fc" id="L49">								number = Double.parseDouble(s1);</span>
+<span class="fc" id="L50">								log = true;</span>
+							}
+							else {
+<span class="fc" id="L53">								double pre = data.get(size-1).getYValue();</span>
+<span class="pc bpc" id="L54" title="1 of 2 branches missed.">								if(pre&lt;=Double.parseDouble(s1)) {</span>
+<span class="fc" id="L55">									number = Double.parseDouble(s1);</span>
+<span class="fc" id="L56">									log = true;</span>
+								}
+							}
+						}
+					}
+					
+<span class="fc bfc" id="L62" title="All 2 branches covered.">					if(log) {</span>
+<span class="fc" id="L63">						data.add(new XYChart.Data&lt;String,Double&gt;(date.format(DateTimeFormatter.ofPattern(&quot;d MMM, yyyy&quot;,Locale.US)), number));</span>
+<span class="fc" id="L64">						break;</span>
+					}
+<span class="fc" id="L66">				}</span>
+<span class="fc" id="L67">				date = date.plusDays(1);</span>
+			}
+<span class="fc bfc" id="L69" title="All 2 branches covered.">			if(data.isEmpty()) {</span>
+<span class="fc" id="L70">				data.add(new XYChart.Data&lt;String,Double&gt;(StartDate.format(DateTimeFormatter.ofPattern(&quot;d MMM, yyyy&quot;,Locale.US)), 0.0));</span>
+<span class="fc" id="L71">				this.location = this.location+&quot; - No data in this period&quot;;</span>
+			}
+<span class="fc" id="L73">		}</span>
+		else {
+<span class="fc" id="L75">			LocalDate date = StartDate;</span>
+<span class="fc bfc" id="L76" title="All 2 branches covered.">			for (int i = 0; i &lt; duration; i++) {</span>
+<span class="fc" id="L77">				data.add(new XYChart.Data&lt;String,Double&gt;(date.format(DateTimeFormatter.ofPattern(&quot;d MMM, yyyy&quot;,Locale.US)), 0.0));</span>
+<span class="fc" id="L78">				date = date.plusDays(1);</span>
+			}
+<span class="fc" id="L80">			this.location = &quot;Period of interest&quot;;</span>
+		}
+<span class="fc" id="L82">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>VaccinationRateSeries.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">deCOVID</a> &gt; <a href="index.source.html" class="el_package">comp3111.covid</a> &gt; <span class="el_source">VaccinationRateSeries.java</span></div><h1>VaccinationRateSeries.java</h1><pre class="source lang-java linenums">package comp3111.covid;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
+import org.apache.commons.csv.CSVParser;
+import org.apache.commons.csv.CSVRecord;
+import edu.duke.FileResource;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.chart.XYChart;
+
+/**
+ * A program to extract data from the dataset for generating the Chart C2
+ * @author Matthew Lin
+ */
+public class VaccinationRateSeries {
+	
+	// fields
+	private final ObservableList&lt;XYChart.Series&lt;String, Double&gt;&gt; series;
+	private final String iDataset;
+	private final ObservableList&lt;String&gt; countryList;
+	private final LocalDate startDate;
+	private final LocalDate endDate;
+
+	/**
+	 * Construct the object and initialise attributes
+	 * @param iDataset the filename of the dataset to be used
+	 * @param countries a list of countries of interest
+	 * @param start the starting date of interest
+	 * @param end the ending date of interest
+	 */
+<span class="fc" id="L33">	public VaccinationRateSeries(String iDataset, ObservableList&lt;String&gt; countries, LocalDate start, LocalDate end) {</span>
+<span class="fc" id="L34">		series = FXCollections.observableArrayList();</span>
+<span class="fc" id="L35">		this.iDataset = iDataset;</span>
+<span class="fc" id="L36">		countryList = FXCollections.observableArrayList(countries);</span>
+<span class="fc" id="L37">		startDate = start;</span>
+<span class="fc" id="L38">		endDate = end;</span>
+<span class="fc" id="L39">	}</span>
+
+	/**
+	 * Get the data points to be used to build a chart
+	 * @return the series containing the data points to be shown in Chart C2
+	 */
+	public ObservableList&lt;XYChart.Series&lt;String, Double&gt;&gt; getSeries() {
+<span class="fc" id="L46">		DateTimeFormatter formatter = DateTimeFormatter.ofPattern(&quot;M/d/yyyy&quot;);</span>
+		
+<span class="fc bfc" id="L48" title="All 2 branches covered.">		for (String location : countryList) {</span>
+<span class="fc" id="L49">			FileResource fr = new FileResource(&quot;dataset/&quot; + iDataset);</span>
+<span class="fc" id="L50">			CSVParser dataset = fr.getCSVParser(true);</span>
+<span class="fc" id="L51">			XYChart.Series&lt;String, Double&gt; seriesItem = new XYChart.Series&lt;&gt;();</span>
+<span class="fc" id="L52">			LocalDate date = startDate;</span>
+<span class="fc" id="L53">			String temp = &quot;0.0&quot;;</span>
+<span class="fc" id="L54">			seriesItem.setName(location);</span>
+			
+<span class="fc bfc" id="L56" title="All 2 branches covered.">			for (CSVRecord record : dataset) {</span>
+<span class="fc bfc" id="L57" title="All 2 branches covered.">				if (record.get(&quot;location&quot;).equals(location)) {</span>
+<span class="fc bfc" id="L58" title="All 2 branches covered.">					if (record.get(&quot;date&quot;).equals(date.format(DateTimeFormatter.ofPattern(&quot;M/d/yyyy&quot;)))) {</span>
+<span class="fc bfc" id="L59" title="All 2 branches covered.">						if (!record.get(&quot;people_fully_vaccinated_per_hundred&quot;).isBlank()) {</span>
+<span class="fc" id="L60">							temp = record.get(&quot;people_fully_vaccinated_per_hundred&quot;);</span>
+						}
+<span class="fc" id="L62">						seriesItem.getData().add(new XYChart.Data&lt;&gt;(date.format(formatter), Double.parseDouble(temp)));</span>
+<span class="fc" id="L63">						date = date.plusDays(1);</span>
+					}
+<span class="pc bpc" id="L65" title="1 of 2 branches missed.">					else if (date.isAfter(endDate))</span>
+<span class="nc" id="L66">						break;</span>
+				}
+<span class="fc" id="L68">			}</span>
+<span class="fc" id="L69">			series.add(seriesItem);</span>
+<span class="fc" id="L70">		}</span>
+		
+<span class="fc" id="L72">		return series;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
