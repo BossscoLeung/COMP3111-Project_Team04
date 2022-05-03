@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>VaccinationRate.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">deCOVID</a> &gt; <a href="index.source.html" class="el_package">comp3111.covid</a> &gt; <span class="el_source">VaccinationRate.java</span></div><h1>VaccinationRate.java</h1><pre class="source lang-java linenums">package comp3111.covid;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
+import org.apache.commons.csv.CSVParser;
+import org.apache.commons.csv.CSVRecord;
+import edu.duke.FileResource;
+
+/**
+ * Represents a data recording the number of people fully vaccinated and people fully vaccinated per 100 of the interested country for generating Table C1
+ * @author Matthew Lin
+ */
+public class VaccinationRate {
+    private String country;
+    private String peopleVaccinated;
+    private String peopleVaccinatedPer100;
+    private String formattedDate;
+
+    /**
+     * Construct the object and initialise attributes
+     */
+<span class="fc" id="L23">    public VaccinationRate() {</span>
+<span class="fc" id="L24">    	this.country = &quot;N/A&quot;;</span>
+<span class="fc" id="L25">		this.peopleVaccinated = &quot;N/A&quot;;</span>
+<span class="fc" id="L26">		this.peopleVaccinatedPer100 = &quot;N/A&quot;;</span>
+<span class="fc" id="L27">		this.formattedDate = &quot;&quot;;</span>
+<span class="fc" id="L28">	}</span>
+
+    /**
+     *
+     * @param dataset the filename of the dataset
+     * @return the CSVParser of the dataset
+     */
+    public static CSVParser getFileParser(String dataset) {
+<span class="fc" id="L36">        FileResource fr = new FileResource(&quot;dataset/&quot; + dataset);</span>
+<span class="fc" id="L37">        return fr.getCSVParser(true);</span>
+    }
+
+    /**
+     * update attributes according to country and date of interest
+     * @param dataset the filename of the dataset
+     * @param location the country of interest
+     * @param date the date of interest
+     */
+    public void update(String dataset, String location, LocalDate date) {
+<span class="fc" id="L47">    	this.country = location;</span>
+<span class="fc" id="L48">        this.peopleVaccinated = &quot;N/A&quot;;</span>
+<span class="fc" id="L49">        this.peopleVaccinatedPer100 = &quot;N/A&quot;;</span>
+<span class="fc" id="L50">		this.formattedDate = date.format(DateTimeFormatter.ofPattern(&quot;M/d/yyyy&quot;));</span>
+		
+<span class="fc bfc" id="L52" title="All 2 branches covered.">		for (CSVRecord rec : getFileParser(dataset)) {</span>
+<span class="fc bfc" id="L53" title="All 2 branches covered.">			if (rec.get(&quot;location&quot;).equals(location) &amp; (rec.get(&quot;date&quot;).equals(formattedDate))) {</span>
+<span class="fc" id="L54">				String s = rec.get(&quot;people_fully_vaccinated&quot;);</span>
+<span class="fc bfc" id="L55" title="All 2 branches covered.">				if (!s.equals(&quot;&quot;)) {</span>
+<span class="fc" id="L56">					this.peopleVaccinated = s;</span>
+				}
+<span class="fc" id="L58">                else this.peopleVaccinated = &quot;N/A&quot;;</span>
+					
+<span class="fc" id="L60">				s = rec.get(&quot;people_fully_vaccinated_per_hundred&quot;);</span>
+<span class="fc bfc" id="L61" title="All 2 branches covered.">				if (!s.equals(&quot;&quot;)) {</span>
+<span class="fc" id="L62">					this.peopleVaccinatedPer100 = s;</span>
+				}
+<span class="fc" id="L64">                else this.peopleVaccinatedPer100 = &quot;N/A&quot;;</span>
+
+<span class="fc" id="L66">				break;</span>
+			}
+<span class="fc" id="L68">		}</span>
+<span class="fc" id="L69">    }</span>
+
+    /**
+     *
+     * @return the name of the country of interest
+     */
+    public String getCountry() {
+<span class="fc" id="L76">        return country;</span>
+    }
+
+    /**
+     *
+     * @return the number of people fully vaccinated according to the dataset
+     */
+    public String getPeopleVaccinated() {
+<span class="fc" id="L84">        return peopleVaccinated;</span>
+    }
+
+    /**
+     *
+     * @return the number of people fully vaccinated per 100 according to the dataset
+     */
+    public String getPeopleVaccinatedPer100() {
+<span class="fc" id="L92">        return peopleVaccinatedPer100;</span>
+    }
+
+    /**
+     *
+     * @return the formatted date
+     */
+    public String getFormattedDate() {
+<span class="fc" id="L100">    	return formattedDate;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
