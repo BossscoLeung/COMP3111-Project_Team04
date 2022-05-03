@@ -284,6 +284,25 @@ public class ControllerTester extends ApplicationTest{
     }
     
     @Test
+    public void testContinentB2() {
+    	clickOn("#tabApp2");
+    	ComboBox<?> continent = (ComboBox<?>)s.lookup("#ContinentB2");
+    	clickOn(continent);
+    	sleep(500);
+    	
+    	//clickOn("Africa");
+    	moveBy(0,50);
+    	clickOn();
+    	WaitForAsyncUtils.waitForFxEvents();
+    	
+    	String s1 = continent.getValue().toString();
+    	String result = "Africa";
+    	
+    	assertEquals(result, s1);
+    	
+    }
+    
+    @Test
     public void testTableB1WithNoInput() {
     	clickOn("#tabReport2");
     	sleep(100);
@@ -327,6 +346,7 @@ public class ControllerTester extends ApplicationTest{
     
     	selectCountry.getCheckModel().check(2);
     	WaitForAsyncUtils.waitForFxEvents();
+    	
 
     	clickOn("#GenerateTableB1");
     	
@@ -395,6 +415,66 @@ public class ControllerTester extends ApplicationTest{
     	String result = "";
     	String s1 = t.getText();
     	
+    	assertEquals(result, s1);
+    }
+    
+    @Test
+    public void testCommendableFeaturesBWithNoInput() {
+    	clickOn("#tabReport2");
+    	WaitForAsyncUtils.waitForFxEvents();  
+    	
+    	clickOn("#GenerateRelationB");
+    	WaitForAsyncUtils.waitForFxEvents(); 
+    	String result = "Please select at least one country and an attribute.";
+    	
+    	String s1 = t.getText();
+    	assertEquals(result, s1);
+    }
+    
+    @Test
+    public void testCommendableFeaturesBWithMissingInput() {
+    	clickOn("#tabReport2");
+    	WaitForAsyncUtils.waitForFxEvents();  
+    	
+    	clickOn("#AttributeB");
+    	WaitForAsyncUtils.waitForFxEvents(); 
+    	moveBy(0,25);
+    	sleep(100);
+    	clickOn();
+    	
+    	clickOn("#GenerateRelationB");
+    	WaitForAsyncUtils.waitForFxEvents(); 
+    	
+    	String result = "Please select at least one country and an attribute.";
+    	
+    	String s1 = t.getText();
+    	assertEquals(result, s1);
+    }
+    
+    @Test
+    public void testCommendableFeaturesBWithInput() {
+    	clickOn("#tabReport2");
+    	WaitForAsyncUtils.waitForFxEvents();  
+    	
+    	Node  node = (Node)s.lookup("#SelectCountryB1");
+    	CheckListView<?> selectCountry = (CheckListView<?>) node;
+    
+    	selectCountry.getCheckModel().check(2);
+    	WaitForAsyncUtils.waitForFxEvents();
+    	
+    	clickOn("#AttributeB");
+    	WaitForAsyncUtils.waitForFxEvents(); 
+    	moveBy(0,25);
+    	sleep(100);
+    	clickOn();
+    	WaitForAsyncUtils.waitForFxEvents(); 
+    	
+    	clickOn("#GenerateRelationB");
+    	WaitForAsyncUtils.waitForFxEvents(); 
+    	
+    	String result = "";
+    	
+    	String s1 = t.getText();
     	assertEquals(result, s1);
     }
 }

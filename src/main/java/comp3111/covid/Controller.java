@@ -751,7 +751,7 @@ public class Controller implements Initializable{
     	
     	String attribute = AttributeB.getValue();
     	
-    	if (attribute.equals(null) || countryList.size() == 0) {
+    	if (attribute == null || countryList.size() == 0) {
     		textAreaConsole.setText("Please select at least one country and an attribute.");
     	}
     	else {
