@@ -42,6 +42,14 @@ public class ComFeatureA {
 				}
 			}
 		}
+		System.out.print("no of data"+data.size()+"\n");
+		for (int i =0; i<data.size();i++) {
+			System.out.print(data.get(i).getXValue()+",");
+		}
+		System.out.print("\n");
+		for (int i =0; i<data.size();i++) {
+			System.out.print(data.get(i).getYValue()+",");
+		}
 		
 	}
 }
