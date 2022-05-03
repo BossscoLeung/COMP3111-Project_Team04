@@ -24,5 +24,6 @@ public class ChartC2Controller {
 
     public void showChart(ObservableList<XYChart.Series<String, Double>> series) {
     	ChartC2.getData().addAll(series);
+        ChartC2.setCreateSymbols(false);
     }
 }
