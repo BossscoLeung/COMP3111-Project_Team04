@@ -779,12 +779,12 @@ public class Controller implements Initializable{
     
     /**
      * Task C1
-     * 
+     * To be triggered by the "Generate Table" button on the Table C Tab
      */
     @FXML
     void doTableC1(ActionEvent event) {
     	String iDataset = textfieldDataset.getText();
-    	ObservableList<String> countryList = FXCollections.observableArrayList();
+    	ObservableList<String> countryList;
     	
     	countryList = SelectCountryC1.getCheckModel().getCheckedItems();
     	LocalDate date = DatePickerC1.getValue();
@@ -822,12 +822,12 @@ public class Controller implements Initializable{
     
     /**
      * Task C2
-     * 
+     * To be triggered by the "Generate Table" button on the Chart C Tab
      */
     @FXML
     void doChartC2(ActionEvent event) {
     	String iDataset = textfieldDataset.getText();
-    	ObservableList<String> countryList = FXCollections.observableArrayList();
+    	ObservableList<String> countryList;
     	
     	countryList = SelectCountryC2.getCheckModel().getCheckedItems();
     	LocalDate StartDate = DatePickerStartC2.getValue();
