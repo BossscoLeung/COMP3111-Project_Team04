@@ -11,7 +11,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.chart.XYChart;
 
-public class ComFeatureTester {
+public class ComFeatureBTester {
 	ObservableList<String> CountryList = FXCollections.observableArrayList();
 	String iDataset = "COVID_Dataset_v1.0.csv"; 
 	
